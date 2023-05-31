@@ -747,7 +747,12 @@
             textContent = description.substr(0,250) + '...';
           }
           var gameRatingAverage = getBoardGameRatingAverage(data);
-          var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14;
+
+          // Prev Logic
+          /* var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14; */
+          // New Logic
+          var ratingInPercentage = ((gameRatingAverage - 5)*5/3) * 20;
+          
           if(ratingInPercentage < 0) {
             ratingInPercentage = 0
           } else if(ratingInPercentage > 100) {
@@ -806,7 +811,11 @@
         // Filter modified based on the items active
         var cBoxPlayerStat = document.getElementById("cBoxPlayer").checked
         var cBoxTimeStat = document.getElementById("cBoxTime").checked
-        if(cBoxPlayerStat == true && cBoxTimeStat == true) {
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
+        // Previous Logic
+        /* if(cBoxPlayerStat == true && cBoxTimeStat == true) {
           if(playerCount <= playerMax && timeCount <= timeMax) {
             filterBoardGames.push(data)
           }
@@ -820,7 +829,25 @@
           }
         } else if(cBoxPlayerStat == false && cBoxTimeStat == false) {
           filterBoardGames.push(data)
+        } */
+        //////////////////////////////////////////////////////////////////////////////////////////////
+        // New Logic
+        if(cBoxPlayerStat == true && cBoxTimeStat == true) {
+          if((playerCount >= playerMin && playerCount <= playerMax) && (timeCount >= timeMin && timeCount <= timeMax)) {
+            filterBoardGames.push(data)
+          }
+        } else if(cBoxPlayerStat == true && cBoxTimeStat == false) {
+          if(playerCount >= playerMin && playerCount <= playerMax) {
+            filterBoardGames.push(data)
+          }
+        } else if(cBoxPlayerStat == false && cBoxTimeStat == true) {
+          if(timeCount >= timeMin && timeCount <= timeMax) {
+            filterBoardGames.push(data)
+          }
+        } else if(cBoxPlayerStat == false && cBoxTimeStat == false) {
+          filterBoardGames.push(data)
         }
+        //////////////////////////////////////////////////////////////////////////////////////////////
       });
 
       //////////////////////////////////////////////////////
@@ -896,7 +923,10 @@
           /////////////////////////////////////////////////////////////////////////////////////
 
           //var ratingInPercentage = ((gameRatingAverage - 6)*5/2) * 20;
-          var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14;
+          // Prev Logic
+          /* var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14; */
+          // New Logic
+          var ratingInPercentage = ((gameRatingAverage - 5)*5/3) * 20;
 
           if(ratingInPercentage < 0) {
             ratingInPercentage = 0
@@ -1014,7 +1044,11 @@
       ////////////////////////////////////////////////////////////////////////////////////
       // New Rating System
       //var ratingInPercentage = ((gameRatingAverage - 6)*5/2) * 20;
-      var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14;
+
+      // Prev logic
+      /* var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14; */
+      // New Logic
+      var ratingInPercentage = ((gameRatingAverage - 5)*5/3) * 20;
 
       if(ratingInPercentage < 0) {
         ratingInPercentage = 0
@@ -1334,7 +1368,10 @@
       ////////////////////////////////////////////////////////////////////////////////////
 
       //var ratingInPercentage = ((gameRatingAverage - 6)*5/2) * 20;
-      var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14;
+      // Prev Logic
+      /* var ratingInPercentage = ((gameRatingAverage - 5)*5/2) * 14; */
+      // New Logic
+      var ratingInPercentage = ((gameRatingAverage - 5)*5/3) * 20;
 
       if(ratingInPercentage < 0) {
         ratingInPercentage = 0
