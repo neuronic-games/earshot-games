@@ -115,7 +115,8 @@ html{
 
     margin-left: 30px;
 
-    left: 75px;
+    /* left: 75px; */
+    left: 85px;
 
     margin-top: -33px;
 
@@ -1058,13 +1059,14 @@ and (orientation : portrait) {
 
   .game-card{}
 
-  .game-title{ font-size: 48px; letter-spacing: -1px; margin:0;}
-
-  .game-designer{ font-size: 28px; letter-spacing: -1px;}
+.game-title{ font-size: 48px; letter-spacing: -1px; margin:0;
+    max-width: 13em;
+}
+.game-designer{ font-size: 28px; letter-spacing: -1px;}
 
 .metaGroup { display: flex; gap:10px; justify-content: flex-end; align-items: center;}
-
-.metaGroup span{ display: flex; align-items: center;}
+.metaGroup_details { display: flex; gap:10px; justify-content: flex-end; align-items: center; width: 250px !important; position: relative; right: 50px;}
+.metaGroup span, .metaGroup_details span{ display: flex; align-items: center;}
 
 .img-box{border:4px solid #fff;
 
@@ -1108,6 +1110,8 @@ and (orientation : portrait) {
     }*/
 
     .metaGroup{ justify-content: flex-start;}
+    .metaGroup_details{ justify-content: flex-start; position: relative; left: 0px;}
+
     .ratingWrapper{ margin-left: 0;}
 }
 
@@ -1197,7 +1201,8 @@ a.disabled-link{ color:#686868; cursor: none;}
 
 .modal-dialog {
     background-color: #fff;
-    max-width: 300px;
+    /* max-width: 300px; */
+    max-width: 315px;
     margin: 1.75rem auto;
 }
 
@@ -1234,6 +1239,7 @@ a.disabled-link{ color:#686868; cursor: none;}
     position: absolute;
     left: 90px;
     top: 0px;
+    padding: 10px;
  }
 
  .playerLabel {
@@ -1252,13 +1258,16 @@ a.disabled-link{ color:#686868; cursor: none;}
     position: absolute;
     left: 90px;
     /* bottom: 45px; */
-    bottom: 40px;
+    /* bottom: 40px; */
+    top:50px;
+    padding: 10px;
  }
 
  .timeLabel {
     position: absolute;
     margin-top: 10px;
-    margin-left: -32px;
+    /* margin-left: -32px; */
+    margin-left: -20px;
  }
 
  .timeFilter {
@@ -1376,6 +1385,18 @@ CHECKBOX
     transform: rotate(45deg);
   }
 
+  .mechanics {
+    position: relative;
+    top: 1.3em;
+  }
+  .mechanicLabel {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -20px;
+    width: 9em;
+ }
+
+
 /*
 *********************************************************************
 */
@@ -1383,13 +1404,17 @@ CHECKBOX
  @media screen and (orientation : portrait) {
     .modal-dialog-centered {
         top: 40px;
-        min-height: calc(22% - (1.75rem * 2));
+        /* min-height: calc(22% - (1.75rem * 2)); */
+       /*  min-height: calc(31rem - (1.75rem * 2)); */
+       min-height: calc(32.5rem - (1.75rem * 2));
     }
  }
  @media screen and (orientation : landscape) {
     .modal-dialog-centered {
         top: 40px;
-        min-height: calc(20% - (1.75rem * 2));
+        /* min-height: calc(20% - (1.75rem * 2)); */
+       /*  min-height: calc(31rem - (1.75rem * 2)); */
+       min-height: calc(32.5rem - (1.75rem * 2));
     }
  }
 
