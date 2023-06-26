@@ -57,6 +57,13 @@
 
 }
 
+@font-face {
+
+    font-family: 'eurostile';
+    src: url('eurostile.ttf') format('truetype');
+
+}
+
 
 html{
     scroll-behavior: smooth;
@@ -95,9 +102,12 @@ html{
 
     height: 10px;
 
-    margin-left: 30px;
+    /* margin-left: 30px;
 
-    margin-top: -33px;
+    margin-top: -33px; */
+    margin-left: -81px;
+    margin-top: 61px;
+    z-index: 9;
 
 }
 
@@ -116,9 +126,12 @@ html{
     margin-left: 30px;
 
     /* left: 75px; */
-    left: 85px;
+    /* left: 85px;
 
-    margin-top: -33px;
+    margin-top: -33px; */
+    margin-left: 16px;
+    margin-top: 61px;
+    z-index: 10;
 
 }
 
@@ -548,11 +561,11 @@ figure {
 
 	.ak_img_detail{ margin-left:auto; margin-right:auto;}
 
-	.slick-prev {left: 0; z-index: 1; }
-
-	.slick-next { right: 0;}
-
+	.slick-prev {left: -14px !important; z-index: 1; }
+	.slick-next {right: -14px !important;}
 }
+
+
 
 @media screen and (max-width:567px){
 
@@ -970,6 +983,28 @@ and (orientation : portrait) {
         box-shadow: none;
     }
 
+    .btn-outline-primary-active {
+        color: #fff;
+        background-color: #3874b5;
+        border-color: #3874b5;
+        background-image: none;
+        box-shadow: none;
+    }
+
+    /* .btn.selected {
+        color: #fff;
+        background-color: #3874b5;
+        border-color: #3874b5;
+    }
+    .btn.normal {
+        color: #3874b5;
+        background-image: none;
+        border-color: #3874b5;
+        z-index: 999999;
+    } */
+
+    
+
 
 
 
@@ -1097,21 +1132,15 @@ and (orientation : portrait) {
 }
 
 .view-details h5{ padding-top:10px;}
+
 @media screen and (max-width:991px){
     .ratingStar span { font-size: 42px;}
     .ratingStar p { font-size: 26px;}
 }
-@media screen and (max-width:767px){
-    /*.sup-small {
-        font-size: 30%;
-        top: 0;
-        display: block;
-        line-height: 130%;
-    }*/
 
+@media screen and (max-width:767px){
     .metaGroup{ justify-content: flex-start;}
     .metaGroup_details{ justify-content: flex-start; position: relative; left: 0px;}
-
     .ratingWrapper{ margin-left: 0;}
 }
 
@@ -1124,7 +1153,8 @@ html{height:100%; }
 .page_greek.AnimateView > .container { margin-bottom: 0 !important; height: 100%; margin-top:0 !important;}
 
 .page_greek.AnimateView .slideshow-slider{ height:calc(100% - 56px);}
-.page_greek.AnimateView .slider_item_wrapper { display: flex; flex-direction: column; height: 100%; }
+.page_greek.AnimateView .slider_item_wrapper { display: flex; flex-direction: column; height: 100%; 
+    /* width: 96%; left: 2% !important; position: relative; */}
 .page_greek.AnimateView .slideshow_bottom{ margin-top: 20px; margin-bottom: 10px; gap:10px;}
 .page_greek.AnimateView .slideshow_bottom .barcode{ flex:0 0 80px; overflow: hidden; max-width: 80px;}
 .page_greek.AnimateView .slideshow_bottom .barcode img{ max-width: 100%;}
@@ -1204,6 +1234,9 @@ a.disabled-link{ color:#686868; cursor: none;}
     /* max-width: 300px; */
     max-width: 315px;
     margin: 1.75rem auto;
+
+    position: relative;
+    top: 10% !important;
 }
 
 
@@ -1214,7 +1247,8 @@ a.disabled-link{ color:#686868; cursor: none;}
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 6px #11111110, 0 0 0 2px #fcb04090;
+    /* box-shadow: 0 0 0 6px #11111110, 0 0 0 3px #F0B25880; */
+    box-shadow: 0 0 0 3px #11111120, 0 0 0 3px #F0B25820;
     text-transform: uppercase;
     color: #000000 !important;
     text-decoration: none;
@@ -1223,8 +1257,9 @@ a.disabled-link{ color:#686868; cursor: none;}
     position: absolute;
     top: 50%;
     left: 50%;
+    border-radius: 0;
     transform: translateX(-50%) translateY(-50%);
-    background-color: #fcb04090;
+    background-color: #F0B258;
 }
 
 
@@ -1237,45 +1272,79 @@ a.disabled-link{ color:#686868; cursor: none;}
 
  .playerContainer {
     position: absolute;
-    left: 90px;
-    top: 0px;
+    left: 72px;/* 90px; */
+    top: 0.3em;/* 0px; */
     padding: 10px;
  }
 
  .playerLabel {
-    position: absolute;
+    /* position: absolute;
     margin-top: 10px;
     margin-left: -20px;
+    font-family: "eurostile";
+    font-size: 1em; */
+    position: absolute;
+    margin-top: 142px;
+    margin-left: -75px;
+    font-family: "eurostile";
+    font-size: 0.65em;
+    width: 150px !important;
+    text-align: center;
+    color: #8B5E3B;
  }
  .playerFilter {
-    position: absolute;
+    /* position: absolute;
     margin-top: 7px;
     margin-left: 110px;
     text-align: center;
-    width: 46px;
+    width: 46px; */
+    position: absolute;
+    margin-top: 67px;
+    margin-left: -69px;
+    text-align: center;
+    width: 135px;
+    height: 50px;
+    z-index: -9;
+    font-size: 2em;
+    font-family: 'eurostile';
  }
  .timeContainer {
     position: absolute;
-    left: 90px;
-    /* bottom: 45px; */
-    /* bottom: 40px; */
-    top:50px;
+    left: 221px;/* 90px; */
+   
+    top: 0.3em;/* 50px; */
     padding: 10px;
  }
 
  .timeLabel {
-    position: absolute;
+    /* position: absolute;
     margin-top: 10px;
-    /* margin-left: -32px; */
-    margin-left: -20px;
+    margin-left: -20px; */
+    position: absolute;
+    margin-top: 142px;
+    margin-left: -72px;
+    font-family: "eurostile";
+    font-size: 0.65em;
+    width: 150px !important;
+    text-align: center;
+    color: #8B5E3B;
  }
 
  .timeFilter {
-    position: absolute;
+    /* position: absolute;
     margin-top: 7px;
     margin-left: 110px;
     text-align: center;
-    width: 46px;
+    width: 46px; */
+    position: absolute;
+    margin-top: 78px;
+    margin-left: -69px;
+    text-align: center;
+    width: 135px;
+    height: 50px;
+    z-index: -9;
+    font-size: 1.4em;
+    font-family: 'eurostile';
  }
 
  .slideshowTime {
@@ -1341,13 +1410,16 @@ CHECKBOX
   /* Create a custom checkbox */
   .cBoxCheckmark {
     position: absolute;
-    top: 10px;
+   /*  top: 10px; */
+    top: 2em;
     left: -70px;
-    height: 28px;
-    width: 28px;
-    border-radius: 3px;
-    border: 1px solid grey;
-    background-color: #00000020;
+    /* height: 28px;
+    width: 28px; */
+    height: 140px;
+    width: 140px;
+    /* border-radius: 3px;
+    border: 1px solid grey; */
+    background-color: #F6D8A0;/*  #00000020; */
   }
   
   /* On mouse-over, add a grey background color */
@@ -1357,7 +1429,8 @@ CHECKBOX
   
   /* When the checkbox is checked, add a blue background */
   .cBoxContainer input:checked ~ .cBoxCheckmark {
-    background-color: #3774b7;
+    background-color: #FFFFFF;
+    border: 5px solid #BC8341;
   }
   
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -1373,7 +1446,7 @@ CHECKBOX
   }
   
   /* Style the checkmark/indicator */
-  .cBoxContainer .cBoxCheckmark:after {
+ /*  .cBoxContainer .cBoxCheckmark:after {
     left: 10px;
     top: 4px;
     width: 9px;
@@ -1383,18 +1456,31 @@ CHECKBOX
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+  } */
 
   .mechanics {
     position: relative;
-    top: 1.3em;
+    top: 0.9em;
   }
   .mechanicLabel {
-    position: absolute;
+    /* position: absolute;
     margin-top: 10px;
     margin-left: -20px;
-    width: 9em;
+    width: 9em; */
+    position: absolute;
+    margin-top: 151px;
+    margin-left: -74px;
+    font-family: "eurostile";
+    font-size: 0.65em;
+    width: 150px !important;
+    text-align: center;
+    color: #8B5E3B;
  }
+
+ .modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 
 
 /*
@@ -1406,7 +1492,8 @@ CHECKBOX
         top: 40px;
         /* min-height: calc(22% - (1.75rem * 2)); */
        /*  min-height: calc(31rem - (1.75rem * 2)); */
-       min-height: calc(32.5rem - (1.75rem * 2));
+       /* min-height: calc(32.5rem - (1.75rem * 2)); */
+       min-height: calc(44.7rem - (1.75rem * 2));
     }
  }
  @media screen and (orientation : landscape) {
@@ -1414,8 +1501,141 @@ CHECKBOX
         top: 40px;
         /* min-height: calc(20% - (1.75rem * 2)); */
        /*  min-height: calc(31rem - (1.75rem * 2)); */
-       min-height: calc(32.5rem - (1.75rem * 2));
+      /*  min-height: calc(32.5rem - (1.75rem * 2)); */
+      min-height: calc(44.7rem - (1.75rem * 2));
     }
  }
 
+ /* @media screen and (min-height:750px) {
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        transform: scale(1) !important;
+        top: -2% !important;
+    }
+ }
+ @media screen and (min-width:350px) {
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        transform: scale(0.8) !important;
+        top: -12% !important;
+    }
+ } */
+
+ @media only screen and (max-width: 330px) and (max-height: 570px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        transform: scale(0.8) !important;
+        top: -12% !important;
+    }
+
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+@media only screen and (min-width: 340px) and (max-width: 380px) and (max-height: 645px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+       /*  transform: scale(0.95) !important; */
+       transform: scale(0.9) !important;
+        top: -5% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+@media only screen and (min-width: 340px) and (max-width: 380px) and (min-height: 650px) and (max-height: 670px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        transform: scale(0.9) !important;
+        top: -3% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+
+@media only screen and (min-width: 340px) and (max-width: 380px) and (min-height: 745px) and (max-height: 750px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        top: 4% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+
+@media only screen and (min-width: 340px) and (max-width: 380px) and (min-height: 790px) and (max-height: 820px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        top: 4% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+
+@media only screen and (min-width: 340px) and (max-width: 380px) and (min-height: 690px) and (max-height: 750px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        top: 4% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+
+
+@media only screen and (min-width: 390px) and (max-width: 420px) and (min-height: 650px) and (max-height: 740px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        top: 4% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+
+@media only screen and (min-width: 390px) and (max-width: 420px) and (min-height: 750px) and (max-height: 900px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        top: 10% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+
+@media only screen and (min-width: 400px) and (max-width: 430px) and (min-height: 790px) and (max-height: 950px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        top: 10% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
 
