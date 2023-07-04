@@ -1147,7 +1147,9 @@ and (orientation : portrait) {
 html{height:100%; }
 .game-details .barcode img{padding: 10px; background: #fff;}
 .page_greek.AnimateView{ height:100%;}
+
 .page_greek.AnimateView .list-slideshow-section{ width: 100%; max-width: 450px; margin-left: auto; margin-right: auto;}
+
 .page_greek.AnimateView > .container > .row{ height:100%;}
 
 .page_greek.AnimateView > .container { margin-bottom: 0 !important; height: 100%; margin-top:0 !important;}
@@ -1236,7 +1238,9 @@ a.disabled-link{ color:#686868; cursor: none;}
     margin: 1.75rem auto;
 
     position: relative;
-    top: 10% !important;
+    /* top: 10% !important; */
+    transform: scale(0.95) !important;
+    top: 1% !important;
 }
 
 
@@ -1527,19 +1531,38 @@ CHECKBOX
     }
  } */
 
- @media only screen and (max-width: 330px) and (max-height: 570px){
+ @media only screen and (min-width: 300px) and (max-width: 330px) and (max-height: 490px){
     .modal-dialog {
         background-color: #fff;
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        transform: scale(0.8) !important;
-        top: -12% !important;
+       /*  transform: scale(0.95) !important; */
+       transform: scale(0.5) !important;
+        /* top: -5% !important; */
+        top: -30% !important;
+    }
+    .slick-prev {width: 25px !important; z-index: 1; }
+	.slick-next {width: 25px !important;}
+}
+
+ @media only screen and (min-width: 320px) and (max-width: 340px) and (min-height: 495px) and (max-height: 570px){
+    .modal-dialog {
+        background-color: #fff;
+        max-width: 315px;
+        margin: 1.75rem auto;
+        position: relative;
+        /* transform: scale(0.8) !important;
+        top: -12% !important; */
+        transform: scale(0.6) !important;
+        top: -19% !important;
     }
 
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
 }
+
+
 @media only screen and (min-width: 340px) and (max-width: 380px) and (max-height: 645px){
     .modal-dialog {
         background-color: #fff;
@@ -1547,8 +1570,10 @@ CHECKBOX
         margin: 1.75rem auto;
         position: relative;
        /*  transform: scale(0.95) !important; */
-       transform: scale(0.9) !important;
-        top: -5% !important;
+       /* transform: scale(0.9) !important;
+        top: -5% !important; */
+        transform: scale(0.7) !important;
+        top: -12% !important;
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
@@ -1559,8 +1584,11 @@ CHECKBOX
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        transform: scale(0.9) !important;
-        top: -3% !important;
+        /* transform: scale(0.9) !important; */
+       /*  top: -3% !important; */
+       /* top: -5% !important; */
+       transform: scale(0.7) !important;
+       top: -12% !important;
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
@@ -1572,7 +1600,11 @@ CHECKBOX
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        top: 4% !important;
+       /*  top: 4% !important; */
+       /* top: 0% !important; */
+       transform: scale(0.9) !important;
+       top: -1% !important;
+      
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
@@ -1584,7 +1616,10 @@ CHECKBOX
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        top: 4% !important;
+        /* top: 4% !important; */
+        /* top: 5% !important; */
+        transform: scale(0.8) !important;
+        top: -6% !important;
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
@@ -1596,7 +1631,11 @@ CHECKBOX
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        top: 4% !important;
+        /* top: 0% !important; */
+        /* transform: scale(0.8) !important;
+        top: -4% !important; */
+        transform: scale(0.8) !important;
+        top: -6% !important;
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
@@ -1609,7 +1648,10 @@ CHECKBOX
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        top: 4% !important;
+        /* top: 4% !important; */
+        /* top: 0% !important; */
+        transform: scale(0.8) !important;
+        top: -6% !important;
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
@@ -1621,7 +1663,9 @@ CHECKBOX
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        top: 10% !important;
+        /* top: 10% !important; */
+        transform: scale(0.9) !important;
+        top: -1% !important;
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
@@ -1633,7 +1677,9 @@ CHECKBOX
         max-width: 315px;
         margin: 1.75rem auto;
         position: relative;
-        top: 10% !important;
+        /* top: 10% !important; */
+        transform: scale(0.9) !important;
+        top: -1% !important;
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}

@@ -13,14 +13,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
 
-  <title>ZapSheet - Game Library</title>
+  <!--title>ZapSheet - Game Library</title-->
+  <title>Game</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="slick/slick.css" />
   <link rel="stylesheet" href="slick/slick-theme.css" />
-  <link rel="stylesheet" href="css/style.css?version=1.1.0" />
-  <link rel="icon" type="image/x-icon" href="zap_icons_game.png" />
-  <link rel="apple-touch-icon" href="zap_icons_game.png" />
+  <link rel="stylesheet" href="css/style.css?version=1.1.3" />
+  <link rel="icon" type="image/x-icon" href="zap_icons_game.png?version=1.1.3" />
+  <link rel="apple-touch-icon" href="zap_icons_game.png?version=1.1.3" />
 </head>
 
 <body class="page_greek">
@@ -171,7 +172,7 @@
                 <span class="cBoxCheckmark"></span>
               </label>
             </div> -->
-            <div id="searchFilter" style="    position: absolute;
+            <div id="searchFilter" style="position: absolute;
             left: 3.5em;
             top: -2.3em;
             display: block; display: none;">
@@ -197,7 +198,7 @@
   <div class="container mt-2 mb-5">
     <div class="row">
       <div class="col-md-12 list-view-section">
-        <div class="row bg-alto header-row-section mx-0 d-none align-items-center" style="display: flex;">
+        <div class="row bg-alto header-row-section mx-0 d-none align-items-center position-sticky sticky-top" style="display: flex;">
             <div class="col p-0">
               <div class="bg-alto py-1 my-0 px-2 preview_title pointer-cursor text-left">
                 <button class="btn btn-outline-primary" onClick="viewSlideShowHTML();">SLIDESHOW</button>
@@ -211,7 +212,16 @@
                   <a id="nextLink" href="javascript:;" class="page-next text-right text-uppercase">Next</a>
                 </div>
             </div>
+          
         </div>
+        <div style="position: fixed;
+        width: 100%;
+        left: 0px;
+        background-color: white;
+        height: 113px;
+        z-index: 99;
+        top: -52px;"></div>
+
         <!--<div class="image_slider"> </div>-->
         <div class="cardList"></div>
       </div>
@@ -225,7 +235,14 @@
         <div class="slideshow-slider"></div>
       </div>
       <div class="col-md-12 detail-view-section d-none">
-        <div class="back-btn pointer-cursor px-4 rounded-0 py-2 mb-3 btn bg-alto text-uppercase text-primary font-DINCondensed">Go Back</div>
+        <div class="back-btn pointer-cursor px-4 rounded-0 py-2 mb-3 btn bg-alto text-uppercase text-primary font-DINCondensed position-sticky sticky-top">Go Back</div>
+        <div style="position: fixed;
+        width: 100%;
+        left: 0px;
+        background-color: white;
+        height: 101px;
+        z-index: 99;
+        top: -50px;"></div>
         <div class="game-details"></div>
       </div>
       <!-- <div class="text-center loader-spinner" style="margin: auto;">
@@ -468,6 +485,7 @@
         loadType = "normal"
       }
     }
+    
     //console.log(loadType, " LoadType")
     //////////////////////////////////////////////////////////////////////////////////////////////////
     // Slick Slide
@@ -515,10 +533,10 @@
       // Pause the slideshow
       if($('.slideshow-slider') != undefined) {
         $('.slideshow-slider').slick('slickPause');
-      }
-
+      
       $('.slick-next').show();
       $('.slick-prev').show();
+    }
 
       viewSearchPanel()
       
@@ -537,10 +555,11 @@
       // Pause the slideshow
       if($('.slideshow-slider') != undefined) {
         $('.slideshow-slider').slick('slickPlay');
-      }
+    
 
-      $('.slick-next').hide();
-      $('.slick-prev').hide();
+        $('.slick-next').hide();
+        $('.slick-prev').hide();
+      }
       
     }
     ////////////////////////////////////////////////////////////////////////////////
@@ -861,8 +880,21 @@
           });
           // changes made 13/6
           viewSlideShowHTML()
-
-
+          setTimeout(function() {
+            MODE_TYPE = "slideshow"
+            idleStatus = true
+            if(MODE_TYPE == "slideshow") {
+              console.log("ENTER ---- Here")
+              $('.slideshow-slider').slick('slickPlay')
+              slideStatus = "cycling"
+              hideMenuButtons()
+              clickedSlideID = -1
+              /////////////////////////////////////////////
+              // Hide Filter Box
+              hideFilterBox();
+              ////////////////////////////////////////////
+            }
+          }, 350)
           hideloader();
         } else /* if(loadType == "refresh") */ {
           //console.log("Loading data from server - checkUserQueryString- ", username)
@@ -905,6 +937,23 @@
                 });
                 // changes made 13/6
                 viewSlideShowHTML()
+                
+                setTimeout(function() {
+                  MODE_TYPE = "slideshow"
+                  idleStatus = true
+                  if(MODE_TYPE == "slideshow") {
+                    //idleStatus = true
+                    $('.slideshow-slider').slick('slickPlay')
+                    slideStatus = "cycling"
+                    hideMenuButtons()
+                    clickedSlideID = -1
+                    /////////////////////////////////////////////
+                    // Hide Filter Box
+                    hideFilterBox();
+                    ////////////////////////////////////////////
+                  }
+                }, 350)
+
                 // initiateSlickSlider();
               } else {
                 // alert(response.error);
@@ -1146,6 +1195,7 @@
       var filterTimeout = setTimeout(function() {
 
         $(".cardList").html("")
+        $(".cardList").scrollTop(0)
 
         //setTimeout(function() {
         //if(MODE_TYPE == "list") {
@@ -1162,6 +1212,18 @@
         $('.slideshow-slider').slick('unslick').html('');
       }
       //////////////////////////////////////////////////////////////////////////////
+
+      //console.log("Game Render")
+
+      // New Check
+      var cBoxPlayerStat = document.getElementById("cBoxPlayer").checked
+      var cBoxTimeStat = document.getElementById("cBoxTime").checked
+      var cBoxCoStat = document.getElementById("cBoxCo").checked
+      var cBoxStategyStat = document.getElementById("cBoxStrategy").checked
+      var cBoxStoryStat = document.getElementById("cBoxStory").checked
+      var cBoxPartyStat = document.getElementById("cBoxParty").checked
+
+      //////////////////////////////////////////////////////////////////////////////
       
       // Show games only whose showcase is true in spreadsheet
       // Filter the games
@@ -1173,14 +1235,19 @@
         if(privateDataList.length == 0) {
           filterGames.push(data)
         } else {
-          $.each(privateDataList, function (index, row) {
-            if (row["Game ID"] == objectid && row["Showcase"] == "TRUE") {
-              filterGames.push(data)
-            }
-          });
+          if(cBoxPlayerStat == false && cBoxTimeStat == false && cBoxCoStat == false && cBoxStategyStat == false && cBoxStoryStat == false && cBoxPartyStat == false) {
+            $.each(privateDataList, function (index, row) {
+              if (row["Game ID"] == objectid && row["Showcase"] == "TRUE") {
+                filterGames.push(data)
+              }
+            });
+          } else {
+            filterGames.push(data)
+          }
         }
       });
       //////////////////////////////////////////////////////////////////////////////
+      //console.log(filterGames, " ---- ")
       if(filterGames.length > 0) {
         //$.each(boardgames, function(index, data) {
         /* let slickChunks = filterGames.slice(0, 10); */
@@ -1822,9 +1889,17 @@
       if($('.slideshow-slider').html() != ''){
         $('.slideshow-slider').slick('unslick').html('');
       }
-      
 
       //////////////////////////////////////////////////////////////////////////////
+      // New Check
+      var cBoxPlayerStat = document.getElementById("cBoxPlayer").checked
+      var cBoxTimeStat = document.getElementById("cBoxTime").checked
+      var cBoxCoStat = document.getElementById("cBoxCo").checked
+      var cBoxStategyStat = document.getElementById("cBoxStrategy").checked
+      var cBoxStoryStat = document.getElementById("cBoxStory").checked
+      var cBoxPartyStat = document.getElementById("cBoxParty").checked
+      //////////////////////////////////////////////////////////////////////////////
+
       //console.log(privateDataList, " --- ", privateDataList.length)
       // Show games only whose showcase is true in spreadsheet
       // Filter the games
@@ -1836,11 +1911,15 @@
         if(privateDataList.length == 0) {
           filterGames.push(data)
         } else {
-          $.each(privateDataList, function (index, row) {
-            if (row["Game ID"] == objectid && row["Showcase"] == "TRUE") {
-              filterGames.push(data)
-            }
-          });
+          if(cBoxPlayerStat == false && cBoxTimeStat == false && cBoxCoStat == false && cBoxStategyStat == false && cBoxStoryStat == false && cBoxPartyStat == false) {
+            $.each(privateDataList, function (index, row) {
+              if (row["Game ID"] == objectid && row["Showcase"] == "TRUE") {
+                filterGames.push(data)
+              }
+            });
+          } else {
+            filterGames.push(data)
+          }
         }
       });
       //////////////////////////////////////////////////////////////////////////////
@@ -1998,6 +2077,8 @@
     function renderListViewItem(data) {
 
       //console.log("RENDER LIST")
+
+   
 
       //if(settingLoaded == false || privateLoaded == false || gameLoaded == false) {return}
 
@@ -2637,8 +2718,9 @@
       //console.log(boardgames.length, " --- ", page)
 
       let nextIndex = (page * 10);
-      
-      //$(".cardList").html('');
+      //console.log(page, " --- ", nextIndex)
+      $(".cardList").html('');
+      $(".cardList").scrollTop(0)
 
       $('.image_slider').slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
       $('.image_slider').html('');
