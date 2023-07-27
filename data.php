@@ -20,9 +20,11 @@
         die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
     }      
     curl_close($crl);
-    
-    
     $responsearray = json_decode(json_encode((array)simplexml_load_string($response)),true);
+
+    if(count($responsearray) == 1){
+        echo json_encode($responsearray); exit;
+    }
     
     if(isset($responsearray['error'])){
         echo json_encode(['status' => 404, 'error' => $responsearray['error']['message']]); exit;
@@ -36,6 +38,7 @@
         $objectsIds[] = $value['@attributes']['objectid'];
         $boardgameBasicData[$value['@attributes']['objectid']]['name'] =  $value['name'];
         $boardgameBasicData[$value['@attributes']['objectid']]['rating'] = '';
+        $boardgameBasicData[$value['@attributes']['objectid']]['status'] =  $value['status'];
         if(isset($value['stats']['rating'])){
             //$boardgameBasicData[$value['@attributes']['objectid']]['rating'] =  ($value['stats']['rating']['average']['@attributes']['value']/2);
             $boardgameBasicData[$value['@attributes']['objectid']]['rating'] =  ($value['stats']['rating']['average']['@attributes']['value']);

@@ -19,12 +19,29 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="slick/slick.css" />
   <link rel="stylesheet" href="slick/slick-theme.css" />
-  <link rel="stylesheet" href="css/style.css?version=1.1.3" />
+  <link rel="stylesheet" href="css/style.css?version=1.1.4" />
   <link rel="icon" type="image/x-icon" href="zap_icons_game.png?version=1.1.3" />
   <link rel="apple-touch-icon" href="zap_icons_game.png?version=1.1.3" />
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet" />
+
+
 </head>
 
-<body class="page_greek">
+<body class="page_greek d-flex flex-column min-vh-100">
+  
+  <header id="page-header" class="game_header pt-4">
+		<div class="container">
+			<div class="game_logo" onclick="">
+				<img src="images/icon_game.png" alt="" class="img-fluid mr-3" width="60"/>
+				<img src="images/logo_icon.png" alt="" class="img-fluid" width="200"/>
+			</div>
+			<h1 class="h2 header_title mt-md-5 mt-4 font-poppins">Manage Your Game Library</h1>
+		</div>
+	</header>
 
   <!--- Modal View Start-->
   <div class="modal fade" id="myModal2" role="dialog">
@@ -248,13 +265,21 @@
       <!-- <div class="text-center loader-spinner" style="margin: auto;">
         <img src="./css/Reload-1s-200px.gif" width="50" height="50" class="image_id text-center" alt="" />
       </div> -->
-      <div class="text-center loader-spinner-text" style="margin: auto;">
+      <div class="text-center loader-spinner-text" style="margin: auto; position: relative; margin-top:4.5em;">
         <img src="zap_icons_game.png" width="70" height="70" class="image_id text-center" alt="" />
         <!-- <img src="./css/Reload-1s-200px.gif" width="40" height="40" class="image_id text-center" alt="" /> -->
         <p id="loadingTxt">Loading...<br> Game Data</p>
       </div>
     </div>
   </div>
+
+  <footer id="page-footer" class="game_footer mt-auto pb-4">
+		<div class="container">
+			<div class="copyright text-center text-light" style="position: relative; height: 1em;"><!-- © 2023 zsheets 2023 All Right Reserved --></div>
+		</div>
+	</footer>
+
+
   <!-- List / Slideshow View End -->
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
@@ -272,11 +297,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
+
     <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
 
   <!-- <script src="js-package/store.legacy.min.js"></script> -->
   <script>
 
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    // Hider loader
+    //hideloader()
+    /////////////////////////////////////////////////////////////////////////////////////////////////
     // checking Listener
     //addEventListener("resize", (event) => {renderPaginationHTML()});
 
@@ -785,7 +817,11 @@
           data:{'sheetId' : sheet_Id, 'sheet' : 'Settings'}, 
           cache: false, 
           success: function (response) {
-            //console.log(response)
+            //console.log(response, " --- " )
+            if(response == "") {
+              checkUserQueryString()
+              return
+            }
             var mResponseSC = response.replace(/�/g, "") 
             var mResponseDQ = mResponseSC.replace(/"/g, "dqo") 
             var mResponseDDQ = mResponseDQ.replace(/: dqo/g, ": 'dqo") 
@@ -829,27 +865,154 @@
       getGamesSettingData()
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////
+    function checkUserFillData() {
+      //console.log("Click")
+
+      // Change user activity type
+      loadType = "refresh"
+
+      // Store the actual link of the app
+      let winLoc = window.location.href.split("?")[0]
+      // get the values from the search form
+      let uSheetId = document.getElementById("usheetId").value
+      //console.log(uSheetId.length, " len")
+      if(uSheetId != "") {
+        $(".cardList").html("");
+        let splitParam = "https://docs.google.com/spreadsheets/d/"
+        if(uSheetId.length > 30) {
+          let correctURL = uSheetId.includes(splitParam)
+          if(correctURL) {
+            // Get Google Sheet url
+            sheet_Id = uSheetId.split(splitParam)[1].split("/")[0]
+          } else {
+            sheet_Id = uSheetId
+          }
+          window.history.replaceState({}, "null", (winLoc + "?id=" + sheet_Id))
+          getGamesSettingData()
+          showloader()
+        } else {
+          // For user name
+          user_name = uSheetId
+          window.history.replaceState({}, "null", (winLoc + "?username=" + user_name))
+          checkUserQueryString()
+          showloader()
+        }
+      }
+
+      /* let uName = document.getElementById("uname").value
+      let uSheetURL = document.getElementById("usheeturl").value
+
+      // Fetch the data based on the filled search form
+      if(uSheetId != "") {
+        $(".cardList").html("");
+        sheet_Id = uSheetId
+        window.history.replaceState({}, "null", (winLoc + "?id=" + sheet_Id))
+        getGamesSettingData()
+        showloader()
+      } else if(uName != "") {
+        $(".cardList").html("");
+        user_name = uName
+        window.history.replaceState({}, "null", (winLoc + "?username=" + user_name))
+        checkUserQueryString()
+        showloader()
+      } else if(uSheetURL != "") {
+        $(".cardList").html("");
+        let splitParam = "https://docs.google.com/spreadsheets/d/"
+       let correctURL = uSheetURL.includes(splitParam)
+       if(correctURL) {
+        sheet_Id = uSheetURL.split(splitParam)[1].split("/")[0]
+       } else {
+        sheet_Id = ""
+       }
+        window.history.replaceState({}, "null", (winLoc + "?id=" + sheet_Id))
+        getGamesSettingData()
+        showloader()
+      } */
+      //console.log(uSheetId, " --- ", uName, " --- ", uSheetURL)
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /* function shuffleGameBasedonOwn(data, basicData) {
+      let ownGames = []
+      for (var i=0; i < data.length; i++) {
+        var objectid = data[i]['@attributes']['objectid'];
+        var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
+        if(isOwn != 0) {
+          ownGames.push(data)
+        }
+      }
+      return ownGames
+    } */
+    //////////////////////////////////////////////////////////////////////////////////////////////////
     function checkUserQueryString() {
       // showing message
       //console.log("showing data - ", document.getElementById("loadingTxt") , " >>>")
       document.getElementById("loadingTxt").innerHTML = "Loading... <br> Games data"
 
+      //#F0B258
+      let messageBody = ""
+      if(sheet_Id == "" && user_name == "") {
+        messageBody = "*SHEET ID, SHEET URL OR USERNAME IS MISSING"
+      } else if(sheet_Id != "" && user_name == "") {
+        messageBody = "*SHEET ID IS INCORRECT"
+      }
+      //console.log(sheet_Id, " --- ", user_name)
+
       var username = (getUrlVars()["username"]) ? getUrlVars()["username"] : user_name;
       if(username == ''){
-        $(".cardList").html('<div class="bg-alto header-row-section p-3"></div><div class="text-center mt-4 pt-4"><h1 class="text-center">SHEET ID OR USERNAME IS MISSING</h1><div class="text-center">Use correct sheet id or username to find its game collection.</div></div>')
+        $(".cardList").html(`<!--div class="bg-alto header-row-section p-3 position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 2.5em !important; border-left: 15px solid #ff0000;"></div-->
+        <div class="position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 1em !important"></div>
+        <div class="text-center mt-4 pt-4" style="position: relative; top: 0em;">
+          <h5 class="text-center" style="color:red; display:${(sheet_Id == "" && user_name == "") ? 'none' : 'block'}">${messageBody}</h5>
+          <h4 class="text-center h3 mb-3" style="position:relative;top: 1em; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 700;">ENTER YOUR BGG USER NAME, GOOGLE SHEET ID, OR GOOGLE SHEET URL</h4>
+          <div id="settingBox" class="text-center mt-4 pt-4" style="width: 60%; position:relative; height: auto; left: 20%;background-color: #FFFFFF; box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 3px #FFFFFF; margin-top: 0em !important; border-radius: 2px;">
+            <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: -10px;">
+              <!--h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">GOOGLE SPREADSHEET ID</h5-->
+              <input class="form-control" type="text" id="usheetId" name="usheetId" style="position: relative; margin-top: 0px; width: 100%;margin-left: 0em; height: 2.5em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+            </div>
+            <!--h5 style="width: 97%; position: relative; left: 1.7% !important; background-color: #F0B258; margin-top: 0em">OR</h5>
+            <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: 3px;">
+              <h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">GOOGLE SPREADSHEET URL</h5>
+              <input type="text" id="usheeturl" name="usheeturl" style="position: relative; margin-top: -5px; width: 100%; margin-left: 0em; height: 2em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+            </div>
+            <h5 style="width: 97%; position: relative; left: 1.7% !important; background-color: #F0B258; margin-top: 0.6em">OR</h5>
+            <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: 3px;">
+              <h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">BGG USERNAME</h5>
+              <input type="text" id="uname" name="uname" style="position: relative; margin-top: -5px; width: 100%; margin-left: 0em; height: 2em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+            </div-->
+            <!--button class="btn btn-outline-primary" style="position:relative; margin-top:0em;margin-bottom:0.5em; right:0px" onClick="checkUserFillData();">SEARCH</button-->
+            <button onClick="checkUserFillData();" class="btn_submit" style="position:relative; margin-top:-1em;margin-bottom:0.5em; right:0px"><img src="images/btn_img.png" class="img-fluid" width="70" /></button>
+            </div>
+          </div>
+        </div>`)
         hideloader();
+        sheet_Id = ""
+        user_name = ""
+        return
       } else {
+
         //console.log(localStorage.getItem("earshot_boardgames"), " --- ", loadType)
-        if(loadType == "normal" && localStorage.getItem("earshot_boardgames") != null) {
+        /* if(loadType == "normal" && localStorage.getItem("earshot_boardgames") != null) { */
+        //console.log(localStorage.getItem("zsheet_url"), " --- ", loadType)
+        if(loadType == "normal" && localStorage.getItem("zsheet_url") == window.location.href) {
         /* if(loadType == "normal" && store.get('earshot_boardgames') != "undefined") { */
         /* if(loadType == "normal" && store.get('earshot_bggData').bgg_boardGames != "undefined") { */
+
+          //console.log("loading cache data")
 
           // Load data
           //console.log("Loading data from local storage - checkUserQueryString")
           
-          boardgames = shuffleArray(JSON.parse(localStorage.getItem("earshot_boardgames")));
+          /* boardgameBasicData = JSON.parse(localStorage.getItem("earshot_boardgameBasicData"));
+          boardgames = shuffleGameBasedonOwn(shuffleArray(JSON.parse(localStorage.getItem("earshot_boardgames"))), boardgameBasicData); */
+
+          boardgames = shuffleArray(JSON.parse(localStorage.getItem("earshot_boardgames"))), 
+
+
           /* boardgames = shuffleArray(JSON.parse(store.get('earshot_boardgames').data)); */
           /* boardgames = shuffleArray(JSON.parse(store.get('earshot_bggData').bgg_boardGames)); */
+
+          boardgames = boardgames[0]
           
           // Soted the game data initially for filtering
           allBoardGames = []
@@ -860,6 +1023,8 @@
           // console.log(boardgames);
           
           boardgameBasicData = JSON.parse(localStorage.getItem("earshot_boardgameBasicData"));
+
+          
           /* boardgameBasicData = JSON.parse(store.get('earshot_boardgameBasicData').data); */
           /* boardgameBasicData = JSON.parse(store.get('earshot_bggData').bgg_boardgameBasicData); */
 
@@ -878,13 +1043,16 @@
             renderListViewItem(data);
             ///////////////////////////////////////////////////
           });
+
+          
           // changes made 13/6
           viewSlideShowHTML()
+
           setTimeout(function() {
             MODE_TYPE = "slideshow"
             idleStatus = true
             if(MODE_TYPE == "slideshow") {
-              console.log("ENTER ---- Here")
+              //console.log("ENTER ---- Here")
               $('.slideshow-slider').slick('slickPlay')
               slideStatus = "cycling"
               hideMenuButtons()
@@ -906,8 +1074,25 @@
             cache: false,
             dataType: 'JSON',
             success: function (response) {
+              //console.log(response.status, " ===== data.php")
               if (response.status == 200) {
+
+                // Hide the top border
+                document.getElementById('page-header').style.display = 'none'
+                document.getElementById('page-footer').style.display = 'none'
+
+
+                /* boardgameBasicData = response.boardgameBasicData;
+                boardgames = shuffleGameBasedonOwn(shuffleArray(response.boardgame), boardgameBasicData);
+                boardgames = boardgames[0] */
+
                 boardgames = shuffleArray(response.boardgame);
+
+                //console.log("loading normal data")
+
+                // Caching browser url
+                //console.log(window.location.href, " >>browser url")
+                localStorage.setItem("zsheet_url", window.location.href)
 
                 localStorage.setItem("earshot_boardgames", JSON.stringify(response.boardgame))
                 /* store.set("earshot_boardgames", { data:JSON.stringify(response.boardgame)}) */
@@ -919,11 +1104,15 @@
                 // console.log(boardgames);
                 boardgameBasicData = response.boardgameBasicData;
 
+                
+
                 localStorage.setItem("earshot_boardgameBasicData", JSON.stringify(response.boardgameBasicData))
                 /* store.set("earshot_boardgameBasicData", { data:JSON.stringify(response.boardgameBasicData)}) */
                 /* store.set("earshot_bggData", { bgg_boardgameBasicData:JSON.stringify(response.boardgameBasicData)}) */
 
                 gameLoaded = true
+
+                //console.log(boardgames[0], " after process")
                 
                 //////////////////////////////////////////////////////
                 // Batch Update Games to google sheet
@@ -958,8 +1147,63 @@
               } else {
                 // alert(response.error);
                 // $(".cardList").html('<div class="alert alert-danger">'+response.error+'</div>');
-                $(".cardList").html('<div class="text-center mt-5 pt-5"><h3>NO COLLECTION FOR THIS USER</h3><p>Use correct user to find its game collection.</p></div>');
+                /* $(".cardList").html('<div class="text-center mt-5 pt-5"><h3>NO COLLECTION FOR THIS USER</h3><p>Use correct user to find its game collection.</p></div>') */;
+                let messageBody = ""
+                if(sheet_Id != "" && user_name == "") {
+                  messageBody = "*SHEET ID IS INCORRECT"
+                } else if(sheet_Id == "" && user_name != "") {
+                  messageBody = "*NO GAME COLLECTION FOR THIS USER"
+                }
+
+                $(".cardList").html(`<!--div class="bg-alto header-row-section p-3 position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 2.5em !important; border-left: 15px solid #ff0000;"></div-->
+                <div class="position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 1em !important"></div>
+                <div class="text-center mt-4 pt-4" style="position: relative; top: 1em;">
+                  <h4 class="text-center h3 mb-3" style="position:relative;top: 1em; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 100; color:red">${messageBody}</h4>
+                  <!--div class="text-center">Use correct sheet id or username or sheet url to find its game collection.</div>
+                  <div id="settingBox" class="text-center mt-4 pt-4" style="width: 60%; position:relative; height: auto; left: 20%; background-color: #F0B25880; box-shadow: 0 0 0 3px #F0B25880, 0 0 0 3px #F0B25820; margin-top: 1em !important;">
+                    <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: -10px;">
+                      <h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">GOOGLE SPREADSHEET ID</h5>
+                      <input type="text" id="usheetId" name="usheetId" style="position: relative; margin-top: -5px; width: 100%; margin-left: 0em; height: 2em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+                    </div>
+                    <h5 style="width: 97%; position: relative; left: 1.7% !important; background-color: #F0B258; margin-top: 0em;">OR</h5>
+                    <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: 3px;">
+                      <h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">GOOGLE SPREADSHEET URL</h5>
+                      <input type="text" id="usheeturl" name="usheeturl" style="position: relative; margin-top: -5px; width: 100%; margin-left: 0em; height: 2em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+                    </div> <h5 style="width: 97%; position: relative; left: 1.7% !important; background-color: #F0B258; margin-top: 0.6em;">OR</h5> <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: 3px;">
+                      <h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">BGG USERNAME</h5>
+                      <input type="text" id="uname" name="uname" style="position: relative; margin-top: -5px; width: 100%; margin-left: 0em; height: 2em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+                    </div-->
+
+
+                    <h4 class="text-center h3 mb-3" style="position:relative;top: 1em; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 700;">ENTER YOUR BGG USER NAME, GOOGLE SHEET ID, OR GOOGLE SHEET URL</h4>
+          <div id="settingBox" class="text-center mt-4 pt-4" style="width: 60%; position:relative; height: auto; left: 20%;background-color: #FFFFFF; box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 3px #FFFFFF; margin-top: 0em !important; border-radius: 2px;">
+            <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: -10px;">
+              <!--h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">GOOGLE SPREADSHEET ID</h5-->
+              <input class="form-control" type="text" id="usheetId" name="usheetId" style="position: relative; margin-top: 0px; width: 100%;margin-left: 0em; height: 2.5em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+            </div>
+            <!--h5 style="width: 97%; position: relative; left: 1.7% !important; background-color: #F0B258; margin-top: 0em">OR</h5>
+            <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: 3px;">
+              <h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">GOOGLE SPREADSHEET URL</h5>
+              <input type="text" id="usheeturl" name="usheeturl" style="position: relative; margin-top: -5px; width: 100%; margin-left: 0em; height: 2em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+            </div>
+            <h5 style="width: 97%; position: relative; left: 1.7% !important; background-color: #F0B258; margin-top: 0.6em">OR</h5>
+            <div style="border: 2px solid #FFFFFF; padding: 5px; border-radius: 5px; position: relative; width: 96%; left: 2%; top: 3px;">
+              <h5 class="text-left" style="position:relative; margin-top:0px !important; margin-left:0em; width:100%">BGG USERNAME</h5>
+              <input type="text" id="uname" name="uname" style="position: relative; margin-top: -5px; width: 100%; margin-left: 0em; height: 2em; font-family: DINRegular;" pattern="[A-Za-z0-9]+" onkeydown="if(['Space'].includes(arguments[0].code)){return false;}"/>
+            </div-->
+            <!--button class="btn btn-outline-primary" style="position:relative; margin-top:0em;margin-bottom:0.5em; right:0px" onClick="checkUserFillData();">SEARCH</button-->
+            <button onClick="checkUserFillData();" class="btn_submit" style="position:relative; margin-top:-1em;margin-bottom:0.5em; right:0px"><img src="images/btn_img.png" class="img-fluid" width="70" /></button>
+
+
+
+
+
+                  </div>
+                </div>
+               </div>`)
               }
+              sheet_Id = ""
+              user_name = ""
               hideloader();
             },
           });
@@ -1005,7 +1249,7 @@
           }
         })
       } {
-        console.log("Sheet already updated...")
+        //console.log("Sheet already updated...")
       }
     }
      //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1094,7 +1338,13 @@
         if (boardgames[startIndex]) {
           data = boardgames[startIndex];
           var objectid = data['@attributes']['objectid'];
-          suggestedGamesHTML += `<div class="slider_item"><div class="image-outer"><a href="javascript:;" class="view-details" data-objectid="${objectid}"><img src="${data.image}" class="img-fluid" id="sliderImg"></a></div><a href="javascript:;" class="text-primary text-uppercase font-DINCondensed text-truncate m-0 p-2 text-center overflow-hidden text-nowrap slide_item_title view-details" data-objectid="${objectid}">${getBoardGameName(data)}</a></div>`;
+          
+          var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
+          //if(isOwn == 0) {return}
+          //console.log(isOwn, " >>>>>")
+          if(isOwn > 0) {
+            suggestedGamesHTML += `<div class="slider_item"><div class="image-outer"><a href="javascript:;" class="view-details" data-objectid="${objectid}"><img src="${data.image}" class="img-fluid" id="sliderImg"></a></div><a href="javascript:;" class="text-primary text-uppercase font-DINCondensed text-truncate m-0 p-2 text-center overflow-hidden text-nowrap slide_item_title view-details" data-objectid="${objectid}">${getBoardGameName(data)}</a></div>`;
+          }
           startIndex += 1;
         }
       }
@@ -1232,17 +1482,27 @@
       /* $.each(filterBoardGames, function(index, data) { */
       //$.each(allBoardGames[0], function(index, data) {
         var objectid = data['@attributes']['objectid'];
+
+        var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
+        //if(isOwn == 0) {return}
+        
         if(privateDataList.length == 0) {
-          filterGames.push(data)
+          if(isOwn > 0) {
+            filterGames.push(data)
+          }
         } else {
           if(cBoxPlayerStat == false && cBoxTimeStat == false && cBoxCoStat == false && cBoxStategyStat == false && cBoxStoryStat == false && cBoxPartyStat == false) {
             $.each(privateDataList, function (index, row) {
               if (row["Game ID"] == objectid && row["Showcase"] == "TRUE") {
-                filterGames.push(data)
+                if(isOwn > 0) {
+                  filterGames.push(data)
+                }
               }
             });
           } else {
-            filterGames.push(data)
+            if(isOwn > 0) {
+              filterGames.push(data)
+            }
           }
         }
       });
@@ -1302,7 +1562,7 @@
         });
       } else {
         //clickedSlideID = -1
-        $(".slideshow-slider").html('<div class="text-center mt-4 pt-4"><h1 class="text-center">NO GAME FOUND BASED ON FILTER CRITERIA.</h1></div>')
+        $(".slideshow-slider").html('<div class="text-center mt-4 pt-4"><h2 class="text-center" style="color:red;">NO GAME FOUND BASED ON FILTER CRITERIA.</h2></div>')
       }
       ////////////////////////////////////////////
       initiateSlideShowSlider();
@@ -1377,6 +1637,11 @@
       //console.log(allBoardGames[0], " all games ")
       $.each(allBoardGames[0], function(index, data) {
         var objectid = data['@attributes']['objectid'];
+
+        var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
+        if(isOwn == 0) {return}
+
+
         var playerStats = (data.minplayers == data.maxplayers) ? data.maxplayers : data.minplayers
         var playerMin = data.minplayers
         var playerMax = data.maxplayers
@@ -1874,7 +2139,7 @@
         document.getElementById("prevLink").innerHTML = ""
         document.getElementById("nextLink").innerHTML = ""
         $('.pagination-pages').html("");
-        $(".cardList").html('<div class="text-center mt-4 pt-4"><h1 class="text-center">NO GAME FOUND BASED ON FILTER CRITERIA.</h1></div>')
+        $(".cardList").html('<div class="text-center mt-4 pt-4"><h2 class="text-center" style="color:red;">NO GAME FOUND BASED ON FILTER CRITERIA.</h2></div>')
       }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1908,17 +2173,27 @@
       /* $.each(filterBoardGames, function(index, data) { */
       //$.each(allBoardGames[0], function(index, data) {
         var objectid = data['@attributes']['objectid'];
+
+        //console.log(boardgameBasicData[objectid].status['@attributes']['own'], " game list")
+        var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
+
         if(privateDataList.length == 0) {
-          filterGames.push(data)
+          if(isOwn > 0) {
+            filterGames.push(data)
+          }
         } else {
           if(cBoxPlayerStat == false && cBoxTimeStat == false && cBoxCoStat == false && cBoxStategyStat == false && cBoxStoryStat == false && cBoxPartyStat == false) {
             $.each(privateDataList, function (index, row) {
               if (row["Game ID"] == objectid && row["Showcase"] == "TRUE") {
-                filterGames.push(data)
+                if(isOwn > 0) {
+                  filterGames.push(data)
+                }
               }
             });
           } else {
-            filterGames.push(data)
+            if(isOwn > 0) {
+              filterGames.push(data)
+            }
           }
         }
       });
@@ -1998,7 +2273,7 @@
           renderQRCode(`slide_${objectid}_barcode`, objectid);
         });
       } else {
-        $(".slideshow-slider").html('<div class="text-center mt-4 pt-4"><h1 class="text-center">NO GAME FOUND BASED ON FILTER CRITERIA.</h1></div>')
+        $(".slideshow-slider").html('<div class="text-center mt-4 pt-4"><h2 class="text-center" style="color:red;">NO GAME FOUND BASED ON FILTER CRITERIA.</h2></div>')
       }
 
       // Manual SlideShow View
@@ -2084,6 +2359,11 @@
 
       //console.log(data, " data")
       var objectid = data['@attributes']['objectid'];
+      //console.log(boardgameBasicData[objectid].status['@attributes']['own'], " game list")
+      var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
+      //console.log(isOwn, " List View")
+      if(isOwn == 0) {return}
+      //console.log("Created")
       var boardgameDesc = data.description;
       if (boardgameDesc.length > 700) {
         textContent = boardgameDesc.substr(0, 690) + '...';

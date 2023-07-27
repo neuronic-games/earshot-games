@@ -1087,9 +1087,7 @@ and (orientation : portrait) {
   }
 
   .page_greek{
-
-
-
+    
   }
 
   .game-card{}
@@ -1242,6 +1240,16 @@ a.disabled-link{ color:#686868; cursor: none;}
     transform: scale(0.95) !important;
     top: 1% !important;
 }
+
+
+/* Disable input text*/
+input[type=text]:focus {outline:none;background: #b9a7d1;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 15px;
+    box-shadow: none !important;
+    height: 45px;
+    color: #000;}
 
 
 .modal-content {
@@ -1499,6 +1507,10 @@ CHECKBOX
        /* min-height: calc(32.5rem - (1.75rem * 2)); */
        min-height: calc(44.7rem - (1.75rem * 2));
     }
+    #settingBox {
+        width: 100% !important;
+        left:0% !important;
+    }
  }
  @media screen and (orientation : landscape) {
     .modal-dialog-centered {
@@ -1507,6 +1519,10 @@ CHECKBOX
        /*  min-height: calc(31rem - (1.75rem * 2)); */
       /*  min-height: calc(32.5rem - (1.75rem * 2)); */
       min-height: calc(44.7rem - (1.75rem * 2));
+    }
+    #settingBox {
+        width: 60% !important;
+        left:20% !important;
     }
  }
 
@@ -1683,5 +1699,69 @@ CHECKBOX
     }
     .slick-prev {width: 25px !important; z-index: 1; }
 	.slick-next {width: 25px !important;}
+}
+
+/*NEW UI CSS*/
+
+h1,.h1{font-size:45px;}
+h2,.h2{font-size:32px;}
+h3,.h3{font-size:20px;}
+h4,.h4{ font-size:18px;}
+h5,.h5{ font-size:16px;}
+h6,.h6{ font-size:15px;}
+.min-vh-100 {
+    min-height: 100vh!important;
+}
+
+.font-poppins{font-family: 'Poppins', sans-serif;}
+.game_header{
+	background-color:#7353a3;
+	background-image:url('../images/bg_header.jpg');
+	background-repeat:no-repeat;
+	background-position:bottom left;
+	background-size:100% 100px;
+	padding-bottom:100px;
+    position: relative;
+    z-index: 9999;
+}
+.header_title{
+	font-weight:100 !important;
+	color:#fff;
+}
+
+.game_footer{
+	background-color:#7353a3;
+	background-image:url('../images/bg_footer.jpg');
+	background-repeat:no-repeat;
+	background-position:top left;
+	background-size:100% 100px;
+	padding-top:100px;
+}
+
+.form-control{
+    background:#b9a7d1;
+    border:none;
+    border-radius:0;
+    margin-bottom:15px;
+    box-shadow:none !important;
+    height:45px;
+    color:#000;
+    }
+
+.btn_submit{
+	border:none; background:transparent; outline:none !important;
+}
+
+@media screen and (max-width:767px){
+h1,.h1{font-size:32px;}
+h2,.h2{font-size:28px;}
+h3,.h3{font-size:18px;}
+h4,.h4{ font-size:16px;}
+h5,.h5{ font-size:16px;}
+h6,.h6{ font-size:16px;}
+
+.game_header{ background-size:100% 50px; padding-bottom:50px; }
+.game_footer{background-size:100% 50px; padding-top:50px; }
+.h2.header_title{ font-size:20px; font-weight: 100;}
 }
 
