@@ -75,7 +75,6 @@
           <label class="playerLabel">Player Count</label>
         </div>
 
-
         
         <div class="timeContainer">
           
@@ -1000,6 +999,11 @@
 
           //console.log("loading cache data")
 
+          // Hide the top border
+          document.getElementById('page-header').style.display = 'none'
+          document.getElementById('page-footer').style.display = 'none'
+          
+
           // Load data
           //console.log("Loading data from local storage - checkUserQueryString")
           
@@ -1009,10 +1013,13 @@
           boardgames = shuffleArray(JSON.parse(localStorage.getItem("earshot_boardgames"))), 
 
 
+          //console.log(boardgames, " cache")
+
+
           /* boardgames = shuffleArray(JSON.parse(store.get('earshot_boardgames').data)); */
           /* boardgames = shuffleArray(JSON.parse(store.get('earshot_bggData').bgg_boardGames)); */
 
-          boardgames = boardgames[0]
+          //boardgames = boardgames[0]
           
           // Soted the game data initially for filtering
           allBoardGames = []
@@ -1043,7 +1050,6 @@
             renderListViewItem(data);
             ///////////////////////////////////////////////////
           });
-
           
           // changes made 13/6
           viewSlideShowHTML()
@@ -1064,6 +1070,7 @@
             }
           }, 350)
           hideloader();
+          
         } else /* if(loadType == "refresh") */ {
           //console.log("Loading data from server - checkUserQueryString- ", username)
           $.ajax({
@@ -1227,12 +1234,20 @@
     function batchUpdateGameList(data) {
       var gameObj = []
       for (var i=0; i < data.length; i++) {
+
         var eachGame = []
         var objectid = data[i]['@attributes']['objectid'];
         var gameTitle = boardgameBasicData[objectid]['name']
-        eachGame.push(String(objectid), String(gameTitle).replace(/[\u{0080}-\u{10FFFF}]/gu,""))
-        gameObj.push(eachGame)
+
+        // New change [Save only the game own]
+        var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
+        //console.log(isOwn, " isOwn")
+        if(isOwn > 0) {
+          eachGame.push(String(objectid), String(gameTitle).replace(/[\u{0080}-\u{10FFFF}]/gu,""))
+          gameObj.push(eachGame)
+        }
       }
+      //console.log(gameObj, " isGameOwn")
       if(privateDataList.length < gameObj.length) {
         //console.log(removeItemOnce(gameObj, privateDataList))
         var updateSheetList = removeItemOnce(gameObj, privateDataList)
