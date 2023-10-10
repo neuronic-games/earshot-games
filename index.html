@@ -301,6 +301,7 @@
     <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
 
   <!-- <script src="js-package/store.legacy.min.js"></script> -->
+  <script src="js-package/jjlc.min.js"></script>
   <script>
 
 
@@ -1010,7 +1011,9 @@
           /* boardgameBasicData = JSON.parse(localStorage.getItem("earshot_boardgameBasicData"));
           boardgames = shuffleGameBasedonOwn(shuffleArray(JSON.parse(localStorage.getItem("earshot_boardgames"))), boardgameBasicData); */
 
-          boardgames = shuffleArray(JSON.parse(localStorage.getItem("earshot_boardgames"))), 
+          // New Changes
+          //boardgames = shuffleArray(JSON.parse(localStorage.getItem("earshot_boardgames"))), 
+          boardgames = shuffleArray(JSON.parse(JJLC.getItem('earshot_boardgames')))
 
 
           //console.log(boardgames, " cache")
@@ -1024,12 +1027,17 @@
           // Soted the game data initially for filtering
           allBoardGames = []
           
-          allBoardGames.push(JSON.parse(localStorage.getItem("earshot_boardgames")))
+          // New Changes
+          //allBoardGames.push(JSON.parse(localStorage.getItem("earshot_boardgames")))
+          allBoardGames.push(JSON.parse(JJLC.getItem("earshot_boardgames")))
+
           /* allBoardGames.push(JSON.parse(store.get('earshot_boardgames').data)) */
           /* allBoardGames.push(JSON.parse(store.get('earshot_bggData').bgg_boardGames)) */
           // console.log(boardgames);
           
-          boardgameBasicData = JSON.parse(localStorage.getItem("earshot_boardgameBasicData"));
+          // New Changes
+          //boardgameBasicData = JSON.parse(localStorage.getItem("earshot_boardgameBasicData"));
+          boardgameBasicData = JSON.parse(JJLC.getItem("earshot_boardgameBasicData"));
 
           
           /* boardgameBasicData = JSON.parse(store.get('earshot_boardgameBasicData').data); */
@@ -1039,7 +1047,8 @@
           
           //////////////////////////////////////////////////////
           // Batch Update Games to google sheet
-          batchUpdateGameList(boardgames)
+          // UnComment if needed
+          //batchUpdateGameList(boardgames)
           //////////////////////////////////////////////////////
           // render pagination
           renderPaginationHTML();
@@ -1101,7 +1110,13 @@
                 //console.log(window.location.href, " >>browser url")
                 localStorage.setItem("zsheet_url", window.location.href)
 
-                localStorage.setItem("earshot_boardgames", JSON.stringify(response.boardgame))
+                // new Changes
+                //localStorage.setItem("earshot_boardgames", JSON.stringify(response.boardgame))
+                JJLC.setItem('earshot_boardgames', JSON.stringify(response.boardgame), 'no-beautify');
+
+                //console.log(compressed, " >> data")
+
+                
                 /* store.set("earshot_boardgames", { data:JSON.stringify(response.boardgame)}) */
                 /* store.set("earshot_bggData", { bgg_boardGames:JSON.stringify(response.boardgame)}) */
 
@@ -1113,7 +1128,10 @@
 
                 
 
-                localStorage.setItem("earshot_boardgameBasicData", JSON.stringify(response.boardgameBasicData))
+                // New Changes
+                //localStorage.setItem("earshot_boardgameBasicData", JSON.stringify(response.boardgameBasicData))
+                JJLC.setItem("earshot_boardgameBasicData", JSON.stringify(response.boardgameBasicData))
+
                 /* store.set("earshot_boardgameBasicData", { data:JSON.stringify(response.boardgameBasicData)}) */
                 /* store.set("earshot_bggData", { bgg_boardgameBasicData:JSON.stringify(response.boardgameBasicData)}) */
 
