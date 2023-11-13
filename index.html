@@ -19,7 +19,7 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="slick/slick.css" />
   <link rel="stylesheet" href="slick/slick-theme.css" />
-  <link rel="stylesheet" href="css/style.css?version=1.1.6" />
+  <link rel="stylesheet" href="css/style.css?version=1.1.7" />
   <link rel="icon" type="image/x-icon" href="zap_icons_game.png?version=1.1.4" />
   <link rel="apple-touch-icon" href="zap_icons_game.png?version=1.1.4" />
 
@@ -63,7 +63,7 @@
 			</div>
 			<h1 class="h2 header_title mt-md-5 mt-4 font-poppins">Manage Your Game Library</h1>
 		</div>
-    <p style="position: absolute; top: 0.5em; right: 1em; color: #FFFFFF90; font-family: DINCondensed-Bold;">Version 1.2</p>
+    <p style="position: absolute; top: 0.5em; right: 1em; color: #FFFFFF90; font-family: DINCondensed-Bold;">Version 1.3</p>
 	</header>
 
   <!--- Modal View Start-->
@@ -497,8 +497,8 @@
   <!-- List / Slideshow View Start -->
   <div class="container mt-2 mb-5">
     <div class="row">
-      <div class="col-md-12 list-view-section">
-        <div class="row bg-alto header-row-section mx-0 d-none align-items-center position-sticky sticky-top" style="display: flex;">
+      <div class="col-md-12 list-view-section" style="padding-top: 10px;">
+        <div class="row bg-alto header-row-section mx-0 d-none align-items-center position-sticky sticky-top" style="display: flex; top:10px">
             <div class="col p-0">
               <div class="bg-alto py-1 my-0 px-2 preview_title pointer-cursor text-left">
                 <button id="btnSlideShow" class="btn btn-outline-primary" onClick="viewSlideShowHTML();">SLIDESHOW</button>
@@ -512,7 +512,6 @@
                   <a id="nextLink" href="javascript:;" class="page-next text-right text-uppercase">Next</a>
                 </div>
             </div>
-          
         </div>
         <div style="position: fixed;
         width: 100%;
@@ -533,14 +532,48 @@
           <p id="sliderDate" class="text-right slideshowTime"></p>
         </div>
         <div class="slideshow-slider"></div>
-        <!--div style="position: absolute; bottom: 0em; width: 100%; height: 6.5em; left: 0em; background-color: red;">
-          <div class="barcode" style="position:relative; width:80px; height:80px; margin-right:15px; max-width:auto;">	
-            <div class="qrcode" id="slide_barcode"></div>
+
+
+        <!--div class="slider_item"><div class="slider_item_wrapper" -->
+          <div class="d-flex justify-content-between slideshow_bottom_Out">
+            <div class="bottom_left_side">
+              <div class="text-right"><div id="statGroup" class="metaGroupOut"><span id="playerStat"><img src="./images/earshot-games_player.png" width="35px"></span><span id="timeStat"><img src="./images/earshot-games_time.png"width="35px"></span><span id="ageStat"><img src="./images/earshot-games_age.png"  width="35px"></span>
+                <span id="coopStat"><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>
+              </div></div> 
+              <div id="_slide" class="ratingWrapper">
+                <div id='star_slide_Out' class="ratingStar" style="height:100%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div> 
+                </div>          
+            </div>  
+            <div class="barcode" style="position:relative; width:80px; height:80px">	
+              <div class="qrcode" id="slide_barcode"></div>
+            </div>      
           </div>
-        </div-->
+          <!--/div-->
+          <!--/div-->
+        
+
+
+
+        <!--div style="position: absolute; bottom: 0em; width: 98%; height: 6.5em; left: 2%; background-color: #FFFFFF;"-->
+          <!--div class="barcode" style="position:relative; width:80px; height:80px; margin-right:15px; max-width:auto;">	
+            <div class="qrcode" id="slide_barcode"></div>
+          </div-->
+          <!--div class="d-flex justify-content-between slideshow_bottom">
+            <div class="bottom_left_side">
+              <div class="text-left"><div class="metaGroup"><span><img src="./images/earshot-games_player.png" width="35px"></span><span><img src="./images/earshot-games_time.png" width="35px"></span><span><img src="./images/earshot-games_age.png" width="35px"></span>
+              </div></div> 
+              <div id="_slide" class="ratingWrapper">
+                <div id='star_slide' class="ratingStar" style="height:100%; width:100%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div> 
+                </div>           
+            </div>  
+            <div class="barcode" style="position:relative; width:80px; height:80px">	
+              <div class="qrcode" id="slide_barcode"></div>
+            </div>      
+          </div-->
+        <!--/div-->
       </div>
-      <div class="col-md-12 detail-view-section d-none">
-        <div class="back-btn pointer-cursor px-4 rounded-0 py-2 mb-3 btn bg-alto text-uppercase text-primary font-DINCondensed position-sticky sticky-top">Go Back</div>
+      <div class="col-md-12 detail-view-section d-none" style="padding-top: 10px;">
+        <div class="back-btn pointer-cursor px-4 rounded-0 py-2 mb-3 btn bg-alto text-uppercase text-primary font-DINCondensed position-sticky sticky-top" style="top: 10px;">Go Back</div>
         <div style="position: fixed;
         width: 100%;
         left: 0px;
@@ -658,7 +691,9 @@
         document.getElementById('splashScreen').style.overflow = "hidden"
       });
 
-      splashTime = setTimeout(HideSplashTime, (splashDelaySec * 1000))
+      if(splashDelaySec > 0) {
+        splashTime = setTimeout(HideSplashTime, (splashDelaySec * 1000))
+      }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1312,7 +1347,9 @@
 
     //var filterBoardGames = []
 
+    // Game Slideshow Assets
     var QRCodeList = []
+    var GameRating = []
 
     var BGGGamesListCount =  -1
 
@@ -1526,12 +1563,14 @@
         ///////////////////////////////////////////////////////////////////////////
         // Show splash screen
         
-        if(splashDelaySec > 0) {
+        if(splashDelaySec >= 0) {
           //console.log(slideStatus, " in idle")
           if(slideStatus != 'cycling') {
             //$('.slideshow-slider').slick('slickPause')
             //console.log(splashDelaySec, " --- ", slideStatus)
-            ShowSplashScreen()
+            if(splash_img != '') {
+              ShowSplashScreen()
+            }
           } else {
            $('.slideshow-slider').slick('slickPlay')
             slideStatus = "cycling"
@@ -2571,8 +2610,10 @@
             
              ///////////////////////////////////////////////////////////////////////////
             // Show splash screen
-            if(splashDelaySec > 0) {
-              ShowSplashScreen()
+            if(splashDelaySec >= 0) {
+              if(splash_img != '') {
+                ShowSplashScreen()
+              }
             }
             ///////////////////////////////////////////////////////////////////////////
             //console.log("IN THIS SLAB")
@@ -2815,8 +2856,10 @@
                   })
                   ///////////////////////////////////////////////////////////////////////////
                   // Show splash screen
-                  if(splashDelaySec > 0) {
-                    ShowSplashScreen()
+                  if(splashDelaySec >= 0) {
+                    if(splash_img != '') {
+                      ShowSplashScreen()
+                    }
                   }
                  
                   ///////////////////////////////////////////////////////////////////////////
@@ -3104,8 +3147,10 @@
 
                  ///////////////////////////////////////////////////////////////////////////
                   // Show splash screen
-                  if(splashDelaySec > 0) {
-                    ShowSplashScreen()
+                  if(splashDelaySec >= 0) {
+                    if(splash_img != '') {
+                      ShowSplashScreen()
+                    }
                   }
                   ///////////////////////////////////////////////////////////////////////////
 
@@ -3437,19 +3482,31 @@
       $('.related_games').html();
       var suggestedGamesHTML = '';
       var startIndex = Math.floor(Math.random() * boardgames.length);
-      if(startIndex > (boardgames.length-10) ){ startIndex = boardgames.length-10; }
-      // console.log(startIndex, boardgames);
+
+      if(boardgames.length >= 10) {
+        if(startIndex > (boardgames.length-10) ) {startIndex = boardgames.length-10;} 
+      } else {
+        startIndex = 0
+      }
+      //console.log(startIndex, " start Index")
+
       for (var loop = 0; loop < 10; loop++) {
         if (boardgames[startIndex]) {
           data = boardgames[startIndex];
+
+          /* console.log(startIndex, '--', data);
+
+          if(data.length > 1) {
+            document.getElementById('youlikeTxt').innerHTML = ''
+          } else {
+            document.getElementById('youlikeTxt').innerHTML = 'You might also like'
+          } */
+
           var objectid = data['@attributes']['objectid'];
-          
           var isOwn = boardgameBasicData[objectid].status['@attributes']['own']
-
           var imagePath = data.image == undefined ? 'images/earshot-games_default.png' : data.image
-
           //if(isOwn == 0) {return}
-          //console.log(isOwn, " >>>>>")
+          //console.log(isOwn, " >>>>> ", objectid)
           if(isOwn > 0) {
             suggestedGamesHTML += `<div class="slider_item"><div class="image-outer"><a href="javascript:;" class="view-details" data-objectid="${objectid}"><img data-lazy="${imagePath/* data.image */}" class="img-fluid" id="sliderImg"></a></div><a href="javascript:;" class="text-primary text-uppercase font-DINCondensed text-truncate m-0 p-2 text-center overflow-hidden text-nowrap slide_item_title view-details" data-objectid="${objectid}">${getBoardGameName(data)}</a></div>`;
           }
@@ -3605,6 +3662,7 @@
       var filterGames = []
       //var isShowCase = false
       QRCodeList.splice(0)
+      GameRating.splice(0)
 
 
       //console.log(boardgames, " ----- ")
@@ -3718,28 +3776,29 @@
           <p>${textContent}</p>
         </div>
           <!--div class="d-flex justify-space-between slideshow_bottom"-->
-          <div class="d-flex justify-content-between slideshow_bottom">
+          <!--div class="d-none justify-content-between slideshow_bottom">
             <div class="bottom_left_side">
               <div class="text-right" data-objectid="${objectid}"><div onClick="showFind(${objectid})" class="metaGroup"><span><img src="./images/earshot-games_player.png" width="35px">${playerStats}</span><span><img src="./images/earshot-games_time.png" width="35px">${playtimeStats}</span><span><img src="./images/earshot-games_age.png"  width="35px">${data.age}+</span>
                 ${data.boardgamemechanic != undefined && data.boardgamemechanic.includes("Cooperative Game") == true
                   ?
                   `<span><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>`
                   : ``}
-              </div></div> 
+              </div></div--> 
               <!--div class="ratingWrapper"-->
-              <div id="${objectid}_slide" class="ratingWrapper" onClick='toggleRating(event, ${ratingInPercentage}, ${gameRatingAverage})'>
+              <!--div id="${objectid}_slide" class="ratingWrapper" onClick='toggleRating(event, ${ratingInPercentage}, ${gameRatingAverage})'>
                 <div id='star_slide' class="ratingStar" style="height:100%; width: ${ratingInPercentage}%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div> 
                 </div>           
             </div>  
             <div onClick="showFind(${objectid})" class="barcode" style="position:relative; width:80px; height:80px">	
               <div class="qrcode" id="slide_${objectid}_barcode"></div>
-            </div>      
+            </div-->      
           </div>
           </div>
 
           </div>
           `);
           QRCodeList.push(objectid)
+          GameRating.push(data)
           //renderQRCode(`slide_${objectid}_barcode`, objectid);
         });
       } else {
@@ -3750,10 +3809,12 @@
       //console.log(QRCodeList.length, " LLL IN SEARCH")
 
       if(QRCodeList.length == 1) {
-        renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0])
+        //renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0])
+        updateGameInfo(GameRating[0], 0)
       } else if(QRCodeList.length > 1) {
-        renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0])
-        renderSlideQRCode(`slide_${QRCodeList[QRCodeList.length-1]}_barcode`, QRCodeList[QRCodeList.length-1]);
+        //renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0])
+        //renderSlideQRCode(`slide_${QRCodeList[QRCodeList.length-1]}_barcode`, QRCodeList[QRCodeList.length-1]);
+        updateGameInfo(GameRating[0], 0)
       }
       
       ////////////////////////////////////////////
@@ -3767,6 +3828,17 @@
       // Hide the box
 
       $('#myModal2').modal('hide');
+
+      ///////////////////////////////////////////////////////////////////////////////
+      // Change view
+      // Go to list view
+      if(MODE_TYPE == 'slideshow') {
+        //console.log('move to list view')
+        toggleSlideShowView()
+      } else {
+        //console.log('stay in list view')
+      }
+      ///////////////////////////////////////////////////////////////////////////////
 
 
       // Make the button active
@@ -4982,6 +5054,7 @@
       var filterGames = []
 
       QRCodeList.splice(0)
+      GameRating.splice(0)
       
       //var isShowCase = false
       //console.log("START - ", isShowCase)
@@ -5060,6 +5133,7 @@
         deviceTypeDescChars = 750
       }
 
+      
       //////////////////////////////////////////////////////////////////////////////
       //console.log(filterGames.length, " filterGames")
       if(filterGames.length > 0) {
@@ -5132,29 +5206,30 @@
         </div>
         <!--div><button class="btn btn-outline-primary text-uppercase" style="position: relative; margin-top:5px;">View</button></div-->
           <!--div class="d-flex justify-space-between slideshow_bottom"-->
-          <div class="d-flex justify-content-between slideshow_bottom">
+          <!--div class="d-none justify-content-between slideshow_bottom">
             <div class="bottom_left_side">
               <div class="text-right" data-objectid="${objectid}"><div onClick="showFind(${objectid})" class="metaGroup"><span><img src="./images/earshot-games_player.png" width="35px">${playerStats}</span><span><img src="./images/earshot-games_time.png"width="35px">${playtimeStats}</span><span><img src="./images/earshot-games_age.png"  width="35px">${data.age}+</span>
                 ${data.boardgamemechanic != undefined && data.boardgamemechanic.includes("Cooperative Game") == true
                   ?
                   `<span><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>`
                   : ``}  
-              </div></div> 
+              </div></div--> 
               <!--div class="ratingWrapper"-->
-              <div id="${objectid}_slide" class="ratingWrapper" onClick='toggleRating(event, ${ratingInPercentage}, ${gameRatingAverage})'>
+              <!--div id="${objectid}_slide" class="ratingWrapper" onClick='toggleRating(event, ${ratingInPercentage}, ${gameRatingAverage})'>
                 <div id='star_slide' class="ratingStar" style="height:100%; width: ${ratingInPercentage}%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div> 
                 </div>          
             </div>  
             <div onClick="showFind(${objectid})" class="barcode" style="position:relative; width:80px; height:80px">	
               <div class="qrcode" id="slide_${objectid}_barcode"></div>
-            </div>      
+            </div-->      
           </div>
           </div>
-
+          
           </div>
           `);
 
           QRCodeList.push(objectid)
+          GameRating.push(data)
           //renderQRCode(`slide_${objectid}_barcode`, objectid);
         });
       } else {
@@ -5181,10 +5256,15 @@
       //renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0]);
       //renderSlideQRCode(`slide_${QRCodeList[QRCodeList.length-1]}_barcode`, QRCodeList[QRCodeList.length-1]);
       if(QRCodeList.length == 1) {
-        renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0]);
+        //renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0]);
+        updateGameInfo(GameRating[0], 0)
       } else if(QRCodeList.length > 1) {
-        renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0]);
-        renderSlideQRCode(`slide_${QRCodeList[QRCodeList.length-1]}_barcode`, QRCodeList[QRCodeList.length-1]);
+        //renderSlideQRCode(`slide_${QRCodeList[0]}_barcode`, QRCodeList[0]);
+        //renderSlideQRCode(`slide_${QRCodeList[QRCodeList.length-1]}_barcode`, QRCodeList[QRCodeList.length-1]);
+
+        // gen single qr
+        //renderSlideQRCode(`slide_barcode`, QRCodeList[0]);
+        updateGameInfo(GameRating[0], 0)
       }
       ////////////////////////////////////////////
       initiateSlideShowSlider();
@@ -5245,12 +5325,97 @@
 
     }
 
-    $('.slideshow-slider').on('beforeChange', function(event, slick, currentSlide){
+    function updateGameInfo(gameInfo, index) {
+      var gameRatingAverage = getBoardGameRatingAverage(gameInfo);
+
+
+      //console.log(gameRatingAverage, ' -- ', GameRating)
+
+
+      var ratingInPercentage = ((gameRatingAverage - 5)*5/3) * 20;
+      if(ratingInPercentage < 0) {
+        ratingInPercentage = 0
+      } else if(ratingInPercentage > 100) {
+        ratingInPercentage = 100
+      }
+
+      // Update Stat Info
+      var playerStats = (gameInfo.minplayers == gameInfo.maxplayers) ? gameInfo.maxplayers : gameInfo.minplayers+"-"+gameInfo.maxplayers;
+      var playtimeStats = (gameInfo.minplaytime == gameInfo.maxplaytime) ? gameInfo.maxplaytime : gameInfo.minplaytime+"-"+gameInfo.maxplaytime; 
+
+      /*
+      <img src="./images/earshot-games_time.png"width="35px"></span><span id="ageStat"><img src="./images/earshot-games_age.png"  width="35px">
+      */
+      document.getElementById('playerStat').innerHTML = '<img src="./images/earshot-games_player.png" width="35px"/>' + playerStats;
+      document.getElementById('timeStat').innerHTML = '<img src="./images/earshot-games_time.png" width="35px"/>' + playtimeStats;
+      document.getElementById('ageStat').innerHTML = '<img src="./images/earshot-games_age.png" width="35px"/>' + gameInfo.age + '+';
+      /* document.getElementById("statGroup").style.opacity = 1
+      document.getElementById("statGroup").style.transition = "opacity 1s"; */
+
+      // Checking for coop games
+      //console.log(Object(gameInfo).boardgamemechanic.includes("Cooperative Game"), " GGGGG")
+      if(Object(gameInfo).boardgamemechanic != undefined && Object(gameInfo).boardgamemechanic.includes("Cooperative Game") == true) {
+        document.getElementById("coopStat").style.display = 'block'
+      } else {
+        document.getElementById("coopStat").style.display = 'none'
+      }
+
+      
+      // Update Rating
+      //console.log(ratingInPercentage, " RATE")
+
+      // revert back to star rating
+      let element = document.getElementById('_slide')
+      element.innerHTM = ''
+      let nDiv = `<div id="star_slide_Out" class="ratingStar" style="width: ${ratingInPercentage}%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div>`
+      element.innerHTML = nDiv 
+
+
+      //document.getElementById('star_slide_Out').style.width = ratingInPercentage + '%'
+
+
+      /* document.getElementById('star_slide_Out').style.opacity = 1
+      document.getElementById("star_slide_Out").style.transition = "opacity 1s";
+ */
+
+      // generate bar code
+      document.getElementById('slide_barcode').innerHTML = ''
+      renderSlideQRCode(`slide_barcode`, QRCodeList[index]);
+      /* document.getElementById('slide_barcode').style.opacity = 1
+      document.getElementById("slide_barcode").style.transition = "opacity 1s"; */
+
+
+      // add click event on Rating star
+      var elm = document.getElementById('_slide');
+      //elm.setAttribute("onclick","function() {('blah');");
+      //console.log("gameRatingAverage", '---', gameRatingAverage)
+      elm.onclick = function(ev) {toggleRatingOut(ratingInPercentage, gameRatingAverage)} 
+    }
+
+    $('.slideshow-slider').on('afterChange', function(event, slick, currentSlide, nextSlide1){
+      //console.log("AFTER CHANGE - ", currentSlide)
+      updateGameInfo(GameRating[currentSlide], currentSlide)
+    })
+
+    $('.slideshow-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide1){
       //sliderCount = slick.slickCurrentSlide()
       //console.log("On Change - ", (currentSlide+1), " < ", slick.previousSlide)
       //console.log(slick.slickCurrentSlide(), " --- ")
 
+      //console.log($('.slideshow-slider').next().find('img[data-srcset]'), " --- ")
+      
+      /* $('.slideshow-slider').next().find('img[data-srcset]').lazyLoadXT({
+          show: true
+      }); */
+
       //console.log("On Before change")
+
+      /* document.getElementById("statGroup").style.opacity = 0
+      document.getElementById("statGroup").style.transition = "opacity 0.5s";
+      document.getElementById('star_slide_Out').style.opacity = 0
+      document.getElementById("star_slide_Out").style.transition = "opacity 0.5s";
+      document.getElementById('slide_barcode').style.opacity = 0
+      document.getElementById("slide_barcode").style.transition = "opacity 0.5s"; */
 
       var nextSlide = 0
       var backSlide = 0
@@ -5277,6 +5442,7 @@
       } */
 
       //console.log(QRCodeList.length, " LLLL")
+      let ratingActiveSlide = 0
       
       if(currentSlide == QRCodeList.length-1) {
         nextSlide = 0
@@ -5289,33 +5455,51 @@
         backSlide = currentSlide
       }
 
+      /* if (Math.abs(nextSlide1 - currentSlide) == 1) {
+        direction = (nextSlide1 - currentSlide > 0) ? "right" : "left";
+      } else {
+        direction = (nextSlide1 - currentSlide > 0) ? "left" : "right";
+      } */
+
+      
+
+      //console.log(backSlide, " --- ", ratingActiveSlide, " N ", nextSlide)
+      //console.log(direction, " dire")
+
       //console.log(nextSlide, " after curSlide ", backSlide)
 
       //console.log(currentSlide, " current slide ")
 
-      if(document.getElementById(`slide_${QRCodeList[nextSlide+1]}_barcode`).innerHTML != '') {
+      /* if(document.getElementById(`slide_${QRCodeList[nextSlide+1]}_barcode`).innerHTML != '') {
         document.getElementById(`slide_${QRCodeList[nextSlide+1]}_barcode`).innerHTML = ''
-      }
+      } */
       /* if(document.getElementById(`slide_${QRCodeList[currentSlide-1]}_barcode`).innerHTML != '') {
         document.getElementById(`slide_${QRCodeList[currentSlide-1]}_barcode`).innerHTML = ''
       } */
 
-      if(document.getElementById(`slide_${QRCodeList[backSlide]}_barcode`).innerHTML != '') {
+      /* if(document.getElementById(`slide_${QRCodeList[backSlide]}_barcode`).innerHTML != '') {
         document.getElementById(`slide_${QRCodeList[backSlide]}_barcode`).innerHTML = ''
-      }
+      } */
 
 
       //console.log(document.getElementById(`slide_${QRCodeList[currentSlide+1]}_barcode`).innerHTML)
       //console.log(document.getElementById(`slide_${QRCodeList[currentSlide]}_barcode`).innerHTML)
 
       // Generate QR Code oly for the active slide
-      setTimeout(function() {
+      //setTimeout(function() {
         //console.log(document.getElementById('barcode').length, " ---- ")
         // Back
-        renderSlideQRCode(`slide_${QRCodeList[backSlide]}_barcode`, QRCodeList[backSlide-1]);
+        //renderSlideQRCode(`slide_${QRCodeList[backSlide]}_barcode`, QRCodeList[backSlide-1]);
         // Next
-        renderSlideQRCode(`slide_${QRCodeList[nextSlide+1]}_barcode`, QRCodeList[nextSlide+1]);
-      }, 10)
+        //renderSlideQRCode(`slide_${QRCodeList[nextSlide+1]}_barcode`, QRCodeList[nextSlide+1]);
+
+        /* if(direction == 'left') {
+          // Generate Rating
+          updateGameInfo(GameRating[backSlide-1])
+        } else {
+          updateGameInfo(GameRating[nextSlide+1])
+        } */
+      //}, 10)
 
     });
 
@@ -5573,6 +5757,39 @@
       </div>`);
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////
+    function toggleRatingOut(_percentage, _bggRating) {
+
+      //console.log(Number(_bggRating).toFixed(2), " ---- ", _bggRating)
+
+      var elm = document.getElementById('_slide')
+      //console.log(elm.innerHTML.split('id=')[1].split(" ")[0], " Selected ID ", elm)
+      RATING_MODE = elm.innerHTML.split('id=')[1].split(" ")[0]
+
+      if(RATING_MODE == null) {return}
+      elm.innerHTML = ""
+      if(RATING_MODE == '"star"' || RATING_MODE == '"star_d"' || RATING_MODE == '"star_slide_Out"') {
+        //RATING_MODE = 'bgg'
+        //console.log(elm.innerHTML)
+        if(RATING_MODE == '"star"') {
+          nDiv = `<div id="bgg" class="ratingStar" style="width:100%"><p>BGG Rating : ${Number(_bggRating).toFixed(2)}</p></div>`
+        } else if(RATING_MODE == '"star_d"') {
+          nDiv = `<div id="bgg_d" class="ratingStar" style="width:100%"><p>BGG Rating : ${Number(_bggRating).toFixed(2)}</p></div>`
+        } else {
+          nDiv = `<div id="bgg_slide" class="ratingStar" style="width:100%"><p>BGG Rating : ${Number(_bggRating).toFixed(2)}</p></div>`
+        }
+      } else {
+        //RATING_MODE = 'star'
+        if(RATING_MODE == '"bgg"') {
+          nDiv = `<div id="star" class="ratingStar" style="width: ${_percentage}%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div>`
+        } else if(RATING_MODE == '"bgg_d"') {
+          nDiv = `<div id="_d" class="ratingStar" style="width: ${_percentage}%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div>`
+        } else {
+          nDiv = `<div id="star_slide_Out" class="ratingStar" style="width: ${_percentage}%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div>`
+        }
+      }
+      elm.innerHTML = nDiv 
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////
     function toggleRating(event, _percentage, _bggRating) {
       /* toggleRatingClick = false
       if(clickedSlideID == -1) {return}
@@ -5583,6 +5800,9 @@
       //console.log(elm.innerHTML.split('id=')[1].split(" ")[0], " Selected ID ", elm)
       /* var elm = document.getElementById("sss")*/
       RATING_MODE = elm.innerHTML.split('id=')[1].split(" ")[0]
+
+      console.log(elm, " --- ", RATING_MODE)
+
       if(RATING_MODE == null) {return}
       elm.innerHTML = ""
       if(RATING_MODE == '"star"' || RATING_MODE == '"star_d"' || RATING_MODE == '"star_slide"') {
@@ -5649,7 +5869,7 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////
     function initiateSlickSlider() {
       $('.image_slider').slick({
-        lazyLoad: 'ondemand',
+        lazyLoad: 'anticipated',
         infinite: true,
         slidesToShow: 5,
         slidesToScroll: 3,
@@ -5718,12 +5938,14 @@
 
 
       $('.slideshow-slider').slick({
-          lazyLoad: 'ondemand',
+          lazyLoad: 'anticipated',
           infinite: true,
           slidesToShow: 1,
           slidesToScroll: 1,
           autoplay: true,
           autoplaySpeed: (slideTime * 1000),/* 5000, */
+          initOnLoad: true,
+          nextSlidesToPreload: 1,
           prevArrow:'<img class="a-left control-c prev slick-prev" src="images/earshot-games_btn_left.png" style="width:30px; height:auto; left:-28px; z-index:1;">',
           nextArrow:'<img class="a-right control-c next slick-next" src="images/earshot-games_btn_right.png" style="width:30px; height:auto; right:-28px; z-index:1;">',
           responsive: [
@@ -5777,7 +5999,7 @@
     function initiateRelatedGamesSlider() {
       if ($('.related_games').find('div').length) {
         $('.related_games').slick({
-          lazyLoad: 'ondemand',
+          lazyLoad: 'anticipated',
           infinite: true,
           slidesToShow: 5,
           slidesToScroll: 2,
@@ -6032,7 +6254,7 @@
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-4 text-md-right">
-                    <div class="metaGroup_details"><span><img src="./images/earshot-games_player.png" width="35px">${playerStats}</span><span><img src="./images/earshot-games_time.png"  width="35px">${playtimeStats}</span><span><img src="./images/earshot-games_age.png"  width="35px">${data.age}+</span>
+                    <div class="metaGroup_details_filter"><span><img src="./images/earshot-games_player.png" width="35px">${playerStats}</span><span><img src="./images/earshot-games_time.png"  width="35px">${playtimeStats}</span><span><img src="./images/earshot-games_age.png"  width="35px">${data.age}+</span>
                       ${data.boardgamemechanic != undefined && data.boardgamemechanic.includes("Cooperative Game") == true
                       ?
                       `<span><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>`
@@ -6059,7 +6281,7 @@
               </div>
             </div>
           
-            <h5 class="related_title">You might also like</h5>  
+            <h5 id='youlikeTxt' class="related_title">You might also like</h5>  
             <div class="related_games"></div>
           
            `);

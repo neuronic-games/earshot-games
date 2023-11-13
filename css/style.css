@@ -883,6 +883,8 @@ and (orientation : portrait) {
 
 .image_slider{ margin-top:30px;}
 
+
+
 .image_slider .slider_item,
 
   .related_games .slider_item {
@@ -1118,8 +1120,15 @@ and (orientation : portrait) {
 .game-designer{ font-size: 28px; letter-spacing: -1px;}
 
 .metaGroup { display: flex; gap:10px; justify-content: flex-end; align-items: center;}
-.metaGroup_details { display: flex; gap:10px; justify-content: flex-end; align-items: center; width: 250px !important; position: relative; right: 50px;}
+.metaGroup_details_filter { display: flex; gap:10px; justify-content: flex-end; align-items: center; width: 250px !important; position: relative; right: 50px;}
+.metaGroup_details { display: flex; gap:10px; justify-content: flex-end; align-items: center; width: 250px !important; position: relative; right: 0px;}
 .metaGroup span, .metaGroup_details span{ display: flex; align-items: center;}
+
+/***************************************************/
+.metaGroupOut { display: flex; gap:10px; justify-content: flex-start; align-items: center;}
+/* .metaGroup_details { display: flex; gap:10px; justify-content: flex-end; align-items: center; width: 250px !important; position: relative; right: 50px;} */
+.metaGroupOut span, .metaGroup_details span{ display: flex; align-items: center;}
+/****************************************************/
 
 .img-box{border:4px solid #fff;
 
@@ -1158,6 +1167,7 @@ and (orientation : portrait) {
 
 @media screen and (max-width:767px){
     .metaGroup{ justify-content: flex-start;}
+    .metaGroupOut{ justify-content: flex-start;}
     .metaGroup_details{ justify-content: flex-start; position: relative; left: 0px;}
     .ratingWrapper{ margin-left: 0;}
 }
@@ -1169,7 +1179,8 @@ html{height:100%; }
 /* .page_greek.AnimateView .list-slideshow-section{ width: 100%; max-width: 450px; margin-left: auto; margin-right: auto;} */
 .page_greek.AnimateView .list-slideshow-section{ width: 100%; max-width: 100%; margin-left: auto; margin-right: auto;}
 
-.page_greek.AnimateView > .container > .row{ height:100%;}
+/* .page_greek.AnimateView > .container > .row { height:100%;} */
+.page_greek.AnimateView > .container > .row { height:100%; padding-top: 10px;}
 
 .page_greek.AnimateView > .container { margin-bottom: 0 !important; height: 100%; margin-top:0 !important;}
 
@@ -1183,6 +1194,7 @@ html{height:100%; }
 .page_greek.AnimateView .slideshow_bottom .barcode img{ max-width: 100%;}
 .page_greek.AnimateView .slideshow_bottom .bottom_left_side{flex:auto;}
 .page_greek.AnimateView .slideshow_bottom .metaGroup span{white-space: nowrap;}
+.page_greek.AnimateView .slideshow_bottom .metaGroupOne span{white-space: nowrap;}
 .page_greek.AnimateView .slick-list,
 
 .page_greek.AnimateView .slick-track,
@@ -1206,6 +1218,9 @@ html{height:100%; }
 }
 
 .page_greek.AnimateView .slideshow-slider .metaGroup{
+    justify-content: flex-start;
+}
+.page_greek.AnimateView .slideshow-slider .metaGroupOut{
     justify-content: flex-start;
 }
 
@@ -1676,6 +1691,7 @@ CHECKBOX
     }
 
     .page_greek.AnimateView .slideshow_bottom{ margin-top: 20px; margin-bottom: 13px; gap:10px;}
+    .slideshow_bottom_Out{ position: relative; margin-top: -95px; margin-bottom: 13px; gap:10px; background-color: #FFFFFF;}
 
     #spinningLoader {
         top: 47vh !important;
@@ -1693,6 +1709,12 @@ CHECKBOX
     #splashImg {
         width: 70vw;
         height: 70vw;
+    }
+
+    .related_games {
+        position: relative;
+        width: 90% !important;
+        left: 5% !important;
     }
 
 
@@ -1748,6 +1770,7 @@ CHECKBOX
     }
 
     .page_greek.AnimateView .slideshow_bottom{ margin-top: 20px; margin-bottom: 10px; gap:10px;}
+    .slideshow_bottom_Out{ position: relative; margin-top: -90px; margin-bottom: 10px; gap:10px; background-color: #FFFFFF;}
 
     #sheetIdForm {
         height: 38vh !important;
@@ -1768,6 +1791,12 @@ CHECKBOX
     #splashImg {
         width: 70vh;
         height: 70vh;
+    }
+
+    .related_games {
+        position: relative;
+        width: 94% !important;
+        left: 3% !important;
     }
 
    /*  #sheetIdForm {
@@ -1830,6 +1859,9 @@ CHECKBOX
     #updateText {
         top: 0vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-2vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
  @media only screen and (min-width: 320px) and (max-width: 340px) and (min-height: 495px) and (max-height: 570px){
@@ -1865,6 +1897,9 @@ CHECKBOX
     #updateText {
         top: 0vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-6vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
 
@@ -1891,6 +1926,9 @@ CHECKBOX
     #updateText {
         top: 2vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-5vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 @media only screen and (min-width: 340px) and (max-width: 380px) and (min-height: 650px) and (max-height: 670px){
     .modal-dialog {
@@ -1914,6 +1952,9 @@ CHECKBOX
 
     #updateText {
         top: 4vh !important; 
+    }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-5vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
     }
 }
 
@@ -1948,6 +1989,9 @@ CHECKBOX
     #updateText {
         top: 0vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-2vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
 @media only screen and (min-width: 340px) and (max-width: 380px) and (min-height: 790px) and (max-height: 820px){
@@ -1980,6 +2024,9 @@ CHECKBOX
     #updateText {
         top: 9vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-4vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
 @media only screen and (min-width: 340px) and (max-width: 380px) and (min-height: 690px) and (max-height: 750px){
@@ -2005,6 +2052,9 @@ CHECKBOX
 
     #updateText {
         top: 6vh !important; 
+    }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-4vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
     }
 }
 
@@ -2040,6 +2090,9 @@ CHECKBOX
     #updateText {
         top: 7vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-5vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
 @media only screen and (min-width: 390px) and (max-width: 420px) and (min-height: 750px) and (max-height: 900px){
@@ -2073,6 +2126,9 @@ CHECKBOX
     #updateText {
         top: 10vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-4vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
 @media only screen and (min-width: 400px) and (max-width: 430px) and (min-height: 790px) and (max-height: 950px){
@@ -2105,6 +2161,9 @@ CHECKBOX
     #updateText {
         top: 11vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-2vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
 
@@ -2121,6 +2180,9 @@ CHECKBOX
     #updateText {
         top: 6vh !important; 
     }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-4vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
+    }
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1030px) and (min-height: 1300px) and (max-height: 1370px){
@@ -2135,6 +2197,9 @@ CHECKBOX
 
     #updateText {
         top: 11vh !important; 
+    }
+    .page_greek.AnimateView .slideshow-slider h4{
+        white-space: nowrap; margin-top:-3vh; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0;
     }
 }
 
