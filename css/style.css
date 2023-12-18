@@ -1649,6 +1649,7 @@ CHECKBOX
 }
 
 
+/***************************************************************************/
 
 
 /*
@@ -1717,6 +1718,28 @@ CHECKBOX
         left: 5% !important;
     }
 
+    #update-banner .headline {
+        font-size: 1.2em !important;
+        user-select: none;
+        line-height: 1.2;
+        position: relative;
+        left: 15% !important;
+     }
+     
+     #update-banner .subhead {
+        font-size: 1em !important;
+     }
+
+     #update-banner[data-state="updateavailable"] {
+        /* cursor: pointer; */
+        background: #404040; /* lightcoral; *//* #26AE60; */
+        position: fixed;
+        width: 100%; /*70%*/
+        left: 0%; /* 15%; */
+        top: 15px;
+        border-radius: 5px;
+        z-index: 9999 !important;
+     }
 
 
     /* #sheetIdForm {
@@ -1798,6 +1821,31 @@ CHECKBOX
         width: 94% !important;
         left: 3% !important;
     }
+
+    #update-banner .headline {
+        font-size: 1.5em !important;
+        user-select: none;
+        line-height: 1.2;
+        position: relative;
+        left: 15% !important;
+     }
+     
+     #update-banner .subhead {
+        font-size: 1.2em !important;
+     }
+
+     #update-banner[data-state="updateavailable"] {
+        /* cursor: pointer; */
+        background: #404040; /* lightcoral; *//* #26AE60; */
+        position: fixed;
+        width: 84%; /*70%*/
+        left: 8%; /* 15%; */
+        top: 15px;
+        border-radius: 5px;
+        z-index: 9999 !important;
+     }
+
+     
 
    /*  #sheetIdForm {
         
@@ -2278,7 +2326,7 @@ h6,.h6{ font-size:15px;}
 	background-repeat:no-repeat;
 	background-position:top left;
 	background-size:100% 100px;
-	padding-top:100px;
+	padding-top:95px; /* 100px; */
 }
 
 .form-control{
@@ -2319,4 +2367,37 @@ h6,.h6{ font-size:16px;}
     margin-bottom:auto;
 }
 /***************************************************************************/
+#update-banner {
+    color: #FFFFFF;
+    background: #2A263C;
+    position: absolute;
+    top: 15px;
+    border: 1px solid #c0c0c080;
+ }
+ #update-banner .content {
+    margin: 0 auto;
+    max-width: 980px;
+    padding: 20px;
+ }
+ #update-banner .headline {
+    font-weight: 800;
+    font-size: 1.2em;
+    user-select: none;
+ }
+ 
+ #update-banner .subhead {
+    font-size: 1em;
+ }
+ #update-banner1111[data-state="updateavailable"] {
+    cursor: pointer;
+    background: #404040; /* lightcoral; *//* #26AE60; */
+    position: fixed;
+    width: 100%; /*70%*/
+    left: 0%; /* 15%; */
+    top: 15px;
+    border-radius: 5px;
+    z-index: 1060 !important;
+ }
+ /***************************************************************************/
+
 

@@ -17,11 +17,11 @@
   <title>Game</title>
   <link rel="stylesheet" href="css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-  <link rel="stylesheet" href="slick/slick.css" />
-  <link rel="stylesheet" href="slick/slick-theme.css" />
-  <link rel="stylesheet" href="css/style.css?version=1.1.7" />
-  <link rel="icon" type="image/x-icon" href="zap_icons_game.png?version=1.1.4" />
-  <link rel="apple-touch-icon" href="zap_icons_game.png?version=1.1.4" />
+  <link rel="stylesheet" href="slick/slick.css?version=1.4" />
+  <link rel="stylesheet" href="slick/slick-theme.css?version=1.4" />
+  <link rel="stylesheet" href="css/style.css?version=1.4" />
+  <link rel="icon" type="image/x-icon" href="zap_icons_game.png?version=1.4" />
+  <link rel="apple-touch-icon" href="zap_icons_game.png?version=1.4" />
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,6 +51,8 @@
 
 <!-- <script src="js-package/store.legacy.min.js"></script> -->
 <script src="js-package/jjlc.min.js"></script>
+<script src="js-package/ServiceWorkerUpdateListener.min.js"></script>
+<script src="js-package/version.js?version=1.4"></script>
 
 
 <body class="page_greek d-flex flex-column min-vh-100">
@@ -58,12 +60,12 @@
   <header id="page-header" class="game_header pt-4">
 		<div class="container">
 			<div class="game_logo" onclick="">
-				<img src="images/icon_game.png" alt="" class="img-fluid mr-3" width="60"/>
-				<img src="images/logo_icon.png" alt="" class="img-fluid" width="200"/>
+				<img src="images/icon_game.png?version=1.4" alt="" class="img-fluid mr-3" width="60"/>
+				<img src="images/logo_icon.png?version=1.4" alt="" class="img-fluid" width="200"/>
 			</div>
 			<h1 class="h2 header_title mt-md-5 mt-4 font-poppins">Manage Your Game Library</h1>
 		</div>
-    <p style="position: absolute; top: 0.5em; right: 1em; color: #FFFFFF90; font-family: DINCondensed-Bold;">Version 1.3</p>
+    <p id="versionId" style="position: absolute; top: 0.5em; right: 1em; color: #FFFFFF90; font-family: DINCondensed-Bold;"></p>
 	</header>
 
   <!--- Modal View Start-->
@@ -80,16 +82,16 @@
         <div class="playerContainer">
           
           <div id="btnMinusPlayer" class="card-header ak_card_minus" style="z-index: 999999;">
-            <img src="images/ear_icon_minus.png" width="25px" height="auto" alt="" onclick="onDecreasePlayers()" />
+            <img src="images/ear_icon_minus.png?version=1.4" width="25px" height="auto" alt="" onclick="onDecreasePlayers()" />
           </div>
           <label id="playerTotal" class="playerFilter">1</label>
           <div id="btnPlusPlayer" class="card-header ak_card_plus" style="z-index: 999998;">
-            <img src="images/ear_icon_plus.png" width="25px" height="auto"  alt="" onclick="onIncreasePlayers()" />
+            <img src="images/ear_icon_plus.png?version=1.4" width="25px" height="auto"  alt="" onclick="onIncreasePlayers()" />
           </div>
           <label class="cBoxContainer">
             <input id="cBoxPlayer" type="checkbox" onclick="onPlayerCheckClick()">
             <span class="cBoxCheckmark">
-              <img id="playerIcon" src="images/earshot-games_icon_count.png" style="position: relative;
+              <img id="playerIcon" src="images/earshot-games_icon_count.png?version=1.4" style="position: relative;
               width: 100%;
               height: 100%;
               top: 0.2em;" alt=""/>
@@ -102,7 +104,7 @@
         <div class="timeContainer">
           
           <div id="btnMinusTime" class="card-header ak_card_minus" style="z-index: 999999;">
-            <img src="images/ear_icon_minus.png" width="25px" height="auto" alt="" onclick="onDecreaseTime()" />
+            <img src="images/ear_icon_minus.png?version=1.4" width="25px" height="auto" alt="" onclick="onDecreaseTime()" />
           </div>
           <label id="timeTotal" class="timeFilter">15</label>
           <label id="minTxt" style="font-size: 0.6em;
@@ -111,12 +113,12 @@
           z-index: 9;
           left: 0em; display: none; color: #845F41;">MINS</label>
           <div id="btnPlusTime" class="card-header ak_card_plus" style="z-index: 999998;">
-            <img src="images/ear_icon_plus.png" width="25px" height="auto"  alt="" onclick="onIncreaseTime()" />
+            <img src="images/ear_icon_plus.png?version=1.4" width="25px" height="auto"  alt="" onclick="onIncreaseTime()" />
           </div>
           <label class="cBoxContainer">
             <input id="cBoxTime" type="checkbox" onclick="onTimeCheckClick()">
             <span class="cBoxCheckmark">
-              <img id="timerIcon" src="images/earshot-games_icon_duration.png" style="position: relative;
+              <img id="timerIcon" src="images/earshot-games_icon_duration.png?version=1.4" style="position: relative;
               width: 100%;
               height: 100%;
               top: 0.2em;" alt=""/>
@@ -139,7 +141,7 @@
                 <label class="cBoxContainer">
                   <input id="cBoxStrategy" type="checkbox" onclick="onStrategyCheckClick()">
                   <span class="cBoxCheckmark">
-                    <img src="images/earshot-games_icon_strategy.png" style="position: relative;
+                    <img src="images/earshot-games_icon_strategy.png?version=1.4" style="position: relative;
               width: 100%;
               height: 100%;
               top: 0.2em;" alt=""/>
@@ -153,7 +155,7 @@
               <label class="cBoxContainer">
                 <input id="cBoxStory" type="checkbox" onclick="onStoryCheckClick()">
                 <span class="cBoxCheckmark">
-                  <img src="images/earshot-games_icon_story.png" style="position: relative;
+                  <img src="images/earshot-games_icon_story.png?version=1.4" style="position: relative;
               width: 100%;
               height: 100%;
               top: 0.2em;" alt=""/>
@@ -167,7 +169,7 @@
               <label class="cBoxContainer">
                 <input id="cBoxParty" type="checkbox" onclick="onPartyCheckClick()">
                 <span class="cBoxCheckmark">
-                  <img src="images/earshot-games_icon_party.png" style="position: relative;
+                  <img src="images/earshot-games_icon_party.png?version=1.4" style="position: relative;
               width: 100%;
               height: 100%;
               top: 0.2em;" alt=""/>
@@ -179,7 +181,7 @@
               <label class="cBoxContainer">
                 <input id="cBoxCo" type="checkbox" onclick="onCoCheckClick()">
                 <span class="cBoxCheckmark">
-                  <img src="images/earshot-games_icon_coop.png" style="position: relative;
+                  <img src="images/earshot-games_icon_coop.png?version=1.4" style="position: relative;
               width: 100%;
               height: 100%;
               top: 0.2em;" alt=""/>
@@ -216,7 +218,7 @@
             left: -1.5em;
             top: -3.8em;
             display: block; display: none; z-index: 9999999;">
-              <img src="./css/Reload-1s-200px.svg" width="120" height="120" class="image_id text-center" alt="" />
+              <img src="./css/Reload-1s-200px.svg?version=1.4" width="120" height="120" class="image_id text-center" alt="" />
             </div>
           </div>
 
@@ -483,11 +485,11 @@
         <!-- </div> -->
 
         <div style="position:relative; top: 11.3em; left: -5.8em;" onclick="ResetFilterItems();">
-          <img src="images/earshot-games_btn_reset.png" width = "62px" alt="" />
+          <img src="images/earshot-games_btn_reset.png?version=1.4" width = "62px" alt="" />
         </div>
 
         <div style="position:relative; top: 8.7em; left: -0.3em;" onclick="hideFilterBox();">
-          <img src="images/earshot-games_btn_go.png" width = "220px" alt="" />
+          <img src="images/earshot-games_btn_go.png?version=1.4" width = "220px" alt="" />
         </div>
 
       </div>
@@ -538,7 +540,7 @@
           <div class="d-flex justify-content-between slideshow_bottom_Out">
             <div class="bottom_left_side">
               <div class="text-right"><div id="statGroup" class="metaGroupOut"><span id="playerStat"><img src="./images/earshot-games_player.png" width="35px"></span><span id="timeStat"><img src="./images/earshot-games_time.png"width="35px"></span><span id="ageStat"><img src="./images/earshot-games_age.png"  width="35px"></span>
-                <span id="coopStat"><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>
+                <span id="coopStat"><img src="./images/earshot-games_coop.png?version=1.4" width="35px"></span>
               </div></div> 
               <div id="_slide" class="ratingWrapper">
                 <div id='star_slide_Out' class="ratingStar" style="height:100%"><span>&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span></div> 
@@ -587,7 +589,7 @@
         <img src="./css/Reload-1s-200px.gif" width="50" height="50" class="image_id text-center" alt="" />
       </div> -->
       <div id="spinningLoader" class="text-center loader-spinner-text" style="margin: auto; position: absolute; top:50%; left:0">
-        <img src="zap_icons_game.png" width="70" height="70" class="image_id text-center" alt="" />
+        <img src="zap_icons_game.png?version=1.4" width="70" height="70" class="image_id text-center" alt="" />
         <!-- <img src="./css/Reload-1s-200px.gif" width="40" height="40" class="image_id text-center" alt="" /> -->
         <p id="loadingTxt">Loading <br>Games</p>
         <button id="btnCont" style="background-color: #7553A2; color: white; border: 0; padding:0.3em 0.5em 0.3em 0.5em; display: none; border-radius: 5px;" onclick="onContinueClick();">CONTINUE</button>
@@ -601,13 +603,20 @@
 		</div>
 	</footer>
 
-  <div id="splashScreen" style="position: absolute; width:100%; top: 0; left:0; z-index: 99999999; display: flex; overflow: hidden; justify-content: space-around; background-color:#666666; align-items: center; height: 100%; opacity: 0;" onclick="HideSplashScreen();">
+  <div id="splashScreen" style="position: absolute; width:100%; top: 0; left:0; z-index: 1059;/* 99999999 */; display: flex; overflow: hidden; justify-content: space-around; background-color:#666666; align-items: center; height: 100%; opacity: 0;" onclick="HideSplashScreen();">
     <img id="splashImg" alt="" />
   </div>
 
 
+  <div id="update-banner" data-state="noupdate" style="display: none;">
+    <!-- <div class="content">
+        <div class="headline">No Update available</div>
+        <div class="subhead">Waiting for an update to become available</div>
+    </div> -->
+ </div>
+
+<!----------------------------------------------------------------------------------------------------------->
   <!-- List / Slideshow View End -->
-  
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
@@ -630,7 +639,101 @@
 
   <script src="js-package/store.legacy.min.js"></script>
   <script src="js-package/jjlc.min.js"></script> -->
+<!----------------------------------------------------------------------------------------------------------->
+
   <script>
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    // For Refresh the page
+    document.getElementById('versionId').innerHTML = 'Checking updates...'
+    if ('serviceWorker' in navigator) {
+      // Create a new ServiceWorkerUpdateListener
+      var listener = new ServiceWorkerUpdateListener();
+      const detectDeviceType = () =>
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+            ? 'Mobile'
+            : 'Desktop';
+      // Called whenever an update has been found and is installing
+      //listener.onupdateinstalling = installingevent => console.log('Update is installing.');
+      // Called whenever an update is done installing and is waiting
+      var buttonElem = ''
+      if(detectDeviceType() == 'Desktop') {
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /* buttonElem = `<p id='btnRefresh' style="position: absolute; right: 3em; top: .4em; font-weight: 700; border: 0; font-size: 1.5em; border-radius: 2px; padding:0.5em; color:#A7C1F6; cursor:pointer;">REFRESH</p>
+        <p style="position: absolute; right: 1em; top: 1.2em; font-weight: 700; border: 0; font-size: 1.2em; border-radius: 2px; padding:0.5em">
+          <img id='closeBox' src='images/close.png' alt="" style="filter: saturate(500%) contrast(800%) brightness(500%) 
+          invert(100%) sepia(0%) hue-rotate(0deg); position: relative; width: 30px; top: -11px; left: 10px; cursor:pointer;" />
+        </p>
+        ` */
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        buttonElem = `<p id='btnRefresh' style="position: absolute; right: 1em; top: .2em; font-weight: 700; border: 0; font-size: 1.5em; border-radius: 2px; padding:0.5em; color:#A7C1F6; cursor:pointer; z-index:99999;">REFRESH</p>
+          <p style="position: absolute; left: 0em; top: 1.2em; font-weight: 700; border: 0; font-size: 1.2em; border-radius: 2px; padding:0.5em">
+            <img id='closeBox' src='images/close.png' alt="" style="filter: saturate(500%) contrast(800%) brightness(500%) 
+            invert(100%) sepia(0%) hue-rotate(0deg); position: relative; width: 30px; top: -14px; left: 10px; cursor:pointer;" />
+          </p>
+          `
+      } else {
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /* buttonElem = `<p id='btnRefresh' style="position: absolute; right: 2.5em; top: 0.9em; font-weight: 700; border: 0; font-size: 1.4em; border-radius: 2px; padding:0.5em; color:#A7C1F6; cursor:pointer;">REFRESH</p>
+        <p style="position: absolute; right: 1em; top: 1.2em; font-weight: 700; border: 0; font-size: 1.2em; border-radius: 2px; padding:0.5em">
+          <img id='closeBox' src='images/close.png' alt="" style="filter: saturate(500%) contrast(800%) brightness(500%) 
+          invert(100%) sepia(0%) hue-rotate(0deg); position: relative; width: 30px; top: -3px; left: 10px; cursor:pointer;" />
+        </p>` */
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        buttonElem = `<p id='btnRefresh' style="position: absolute; right: 0.5em; top: 0.8em; font-weight: 700; border: 0; font-size: 1.4em; border-radius: 2px; padding:0.5em; color:#A7C1F6; cursor:pointer; z-index:99999;">REFRESH</p>
+          <p style="position: absolute; left: 0.5em; top: 0.9em; font-weight: 700; border: 0; font-size: 1.2em; border-radius: 2px; padding:0.5em">
+            <img id='closeBox' src='images/close.png' alt="" style="filter: saturate(500%) contrast(800%) brightness(500%) 
+            invert(100%) sepia(0%) hue-rotate(0deg); position: relative; width: 30px; /* top: -3px; left: 10px; */ cursor:pointer;" />
+          </p>`
+      }
+      listener.onupdatewaiting = waitingevent => {
+        var contentDiv = `<div class="content">
+          ${buttonElem}
+          <div class="headline"></div>
+        </div>`
+        document.getElementById('update-banner').innerHTML = contentDiv
+        document.getElementById('update-banner').style.display = 'block'
+        document.getElementById('update-banner').dataset.state = 'updateavailable';
+        if(detectDeviceType() == 'Desktop') {
+          document.querySelector('#update-banner .headline').innerHTML = 'A NEW VERSION OF GAME LIBRARY IS AVAILABLE';
+        } else {
+          document.querySelector('#update-banner .headline').innerHTML = 'A NEW VERSION OF GAME<br>LIBRARY IS AVAILABLE';
+        }
+        
+        document.getElementById('btnRefresh').addEventListener('click', clickEvent => {
+          document.getElementById('btnRefresh').style.display = 'none'
+          document.getElementById('closeBox').style.display = 'none'
+          listener.skipWaiting(waitingevent.detail.serviceWorker)
+        });
+
+        document.getElementById('closeBox').addEventListener('click', clickEvent => {
+          document.getElementById('update-banner').style.display = 'none'
+        });
+      }
+      // Called whenever an update is activated
+      listener.onupdateready = event => {
+        console.log('Update done. Restarted')
+        document.querySelector('#update-banner .headline').innerHTML = 'INSTALLING UPDATE..';
+        setTimeout(function() {
+            document.getElementById('update-banner').style.display = 'none'
+            window.location.reload();
+        }, 1500)
+      }
+      // Register the service worker and add it to the listener
+      navigator.serviceWorker.register('service-worker.js?version=1.3')
+      .then(registration => {
+        setTimeout(function () {
+              //console.log('registration.waiting > ', registration.waiting)
+              if(registration.waiting == null) {
+                  document.getElementById('versionId').innerHTML = 'Version ' + Number(_version).toFixed(1)
+              } else {
+                document.getElementById('versionId').innerHTML = 'Version ' + Number(_version - .1).toFixed(1)
+              }
+            }, 1800)
+        listener.addRegistration(registration)
+        }
+      )
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
     function HideSplashScreen() {
       //document.getElementById('splashScreen').style.display = 'none'
@@ -646,7 +749,7 @@
         document.getElementById('splashScreen').style.overflow = "hidden"
       });
 
-      clearTimeout(splashTime)
+      //clearTimeout(splashTime)
      
       //console.log(document.getElementById("splashScreen").style.opacity, "-----")
       setTimeout(function() {
@@ -675,11 +778,14 @@
       //$('.slideshow-slider').slick('slickPlay');
     }
     function ShowSplashScreen() {
+      ///////////////////////////////////////////////////////////////////////////
       //console.log("ENTER SHOW")
       //document.getElementById("splashImg").src = splash_img
       //document.getElementById('splashScreen').style.display = 'flex'
       //document.getElementById('splashScreen').style.overflow = "hidden"
       //console.log(document.getElementById("splashScreen").style.opacity, " -")
+      ///////////////////////////////////////////////////////////////////////////
+
       document.getElementById('splashScreen').style.display = 'flex'
       document.getElementById("splashScreen").style.opacity = 1;
       document.getElementById("splashScreen").style.transition = "all 0.5s";
@@ -1353,6 +1459,8 @@
 
     var BGGGamesListCount =  -1
 
+    let gameMsg = ""
+
     //////////////////////////////////////////////////////////////////////////////////////////////////
     // Checking whether the page is loaded or reloaded/refresh
     if (window.performance) {
@@ -1721,6 +1829,7 @@
           $('.slideshow-slider').slick('slickPause')
           slideStatus = "active"
           showMenuButtons()
+          HideSplashScreen()
         }
         ////////////////////////////////////////////////
       }
@@ -2178,14 +2287,27 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////
     
     var sheet_Id = (getUrlVars()["id"]) ? getUrlVars()["id"].split('/')[0] : '';
-    var game_action = (getUrlVars()["id"]) ? (getUrlVars()["id"].split('/')[1] != undefined ? getUrlVars()["id"].split('/')[1] : '') : '';
-
+    //var game_action = (getUrlVars()["id"]) ? (getUrlVars()["id"].split('/')[1] != undefined ? getUrlVars()["id"].split('/')[1] : '') : '';
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    let syncVal = (window.location.href.indexOf('&'));
+    var game_action = ''
+    if(syncVal != -1) {
+      if(getUrlVars()["sync"] != undefined && getUrlVars()["sync"] != '') {
+        if(getUrlVars()["sync"] == 'true') {
+          game_action = 'sync'
+        } else if(getUrlVars()["sync"] == 'false') {
+          game_action = ''
+        }
+      } else {
+        game_action = 'sync'
+      }
+    }
     //console.log(game_action, " game action")
-
-
+    //return
+    //////////////////////////////////////////////////////////////////////////////////////////////////
     window.addEventListener('load', (event) => {
       if(game_action == 'sync') {
-        document.getElementById("loadingTxt").innerHTML = "Syncing <br>Games data"
+        document.getElementById("loadingTxt").innerHTML = "Syncing<br>Games data"
         updateGoogleSheetWithData()
       } else {
       if(sheet_Id == '') {
@@ -2271,64 +2393,87 @@
     function updateGoogleSheetWithGameData() {
       if(username == "") {
         console.log("No USER NAME")
-      } {
-      $.ajax({
-        //url: apiurl, 
-        url: 'data.php',
-        type: 'POST',
-        data: 'username=' + username,
-        cache: false,
-        dataType: 'JSON',
-        success: function (response) {
-          //console.log(response.status, " ===== data.php")
-          if (response.status == 200) {
-            let _filteredOwnGames = filterOwnGames(response.boardgame, response.boardgameBasicData)
-            boardgames = shuffleArray(_filteredOwnGames);
-            boardgames = shuffleGameBasedOnPrivateDataList()
-            // Storing games count
-            BGGGamesListCount = boardgames.length
-            // Soted the game data initially for filtering
-            allBoardGames = []
-            // New changes
-            allBoardGames.push(_filteredOwnGames)
-            boardgameBasicData = response.boardgameBasicData;
-            gameLoaded = true
-            //////////////////////////////////////////////////////
-            // Batch Update Games to google sheet
-            let p = batchUpdateGameList(boardgames)
-            //console.log(p, " spreasheet update")
-            //console.log("Batch Updated")
-            if(p == "Games List Saved.") {
-            $(".cardList").html(`<div id="updateText" class="text-center mt-4 pt-4" style="position: relative; margin-top: 1% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
-              <p class="text-center h3 mb-3" style="position:relative;top: 1em !important; z-index:9; font-family: 'DINCondensed-Bold'; letter-spacing: 0px; font-weight: 100; color:#3874b5; font-size:1.5em">GOOGLE SHEET GAMES DATA SYNCED WITH BGG GAME DATA.</p></div>`)
-            } else if(p == "Sheet Already Updated") {
-              $(".cardList").html(`<div id="updateText" class="text-center mt-4 pt-4" style="position: relative; margin-top: 1% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
-              <p class="text-center h3 mb-3" style="position:relative;top: 1em !important; z-index:9; font-family: 'DINCondensed-Bold'; letter-spacing: 0px; font-weight: 100; color:#3874b5; font-size:1.5em">GOOGLE SHEET GAMES DATA ALREADY SYNCED.</p></div>`)
-            }
+        // In case using username to sync data
+        $(".cardList").html(`<div id="updateText" class="text-center mt-4 pt-4" style="position: relative; margin-top: 1% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
+        <p class="text-center h3 mb-3" style="position:relative;top: 0.5em !important; z-index:9; font-family: 'DINCondensed-Bold'; letter-spacing: 0px; font-weight: 100; color:#3874b5; font-size:1.5em;">USE SPREADSHEET ID TO SYNC BGG GAMES DATA.</p></div>`)
+        sheet_Id = ""
+        user_name = ""
+        hideloader();
+        document.getElementById('splashScreen').style.display = 'none'
+        document.getElementById('splashScreen').style.opacity = 0
+        document.getElementById('splashScreen').style.overflow = "hidden"
+      } else {
+        $.ajax({
+          //url: apiurl, 
+          url: 'data.php',
+          type: 'POST',
+          data: 'username=' + username,
+          cache: false,
+          dataType: 'JSON',
+          success: function (response) {
+            //console.log(response.status, " ===== data.php")
+            if (response.status == 200) {
+              let _filteredOwnGames = filterOwnGames(response.boardgame, response.boardgameBasicData)
+              boardgames = shuffleArray(_filteredOwnGames);
+              
+              //boardgames = shuffleGameBasedOnPrivateDataList()
+              
+              // Storing games count
+              BGGGamesListCount = boardgames.length
+              // Soted the game data initially for filtering
+              allBoardGames = []
+              // New changes
+              allBoardGames.push(_filteredOwnGames)
+              boardgameBasicData = response.boardgameBasicData;
+              gameLoaded = true
+              //////////////////////////////////////////////////////
+              // Batch Update Games to google sheet
+              let spSheetStat = batchUpdateGameList(boardgames)
+              setTimeout(function() {
+                //console.log(p, " spreasheet update ", gameMsg)
+                //console.log("Batch Updated")
+                if(gameMsg == "Games List Saved.") {
+                $(".cardList").html(`<div id="updateText" class="text-center mt-4 pt-4" style="position: relative; margin-top: 1% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
+                  <p class="text-center h3 mb-3" style="position:relative;top: 0.5em !important; z-index:9; font-family: 'DINCondensed-Bold'; letter-spacing: 0px; font-weight: 100; color:#3874b5; font-size:1.5em; height:12em; overflow-x:hidden; overflow-y:auto; text-align:left !important;">${JSON.stringify(boardgames)}</p></div>`)
+                } else if(gameMsg == "Sheet Already Updated") {
+                  $(".cardList").html(`<div id="updateText" class="text-center mt-4 pt-4" style="position: relative; margin-top: 1% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
+                  <p class="text-center h3 mb-3" style="position:relative;top: 0.5em !important; z-index:9; font-family: 'DINCondensed-Bold'; letter-spacing: 0px; font-weight: 100; color:#3874b5; font-size:1.5em;">GAMES SHEET ALREADY SYNCED WITH BGG GAMES DATA</p></div>`)
+                }
+                sheet_Id = ""
+                user_name = ""
+                hideloader();
+                document.getElementById('splashScreen').style.display = 'none'
+                document.getElementById('splashScreen').style.opacity = 0
+                document.getElementById('splashScreen').style.overflow = "hidden"
+              }, 3000)
 
-            //////////////////////////////////////////////////////
-          } else {
-            console.log("ENTER HERE")
-            let messageBody = ""
-            if(sheet_Id != "" && user_name == "") {
-              //messageBody = "*SHEET ID IS INCORRECT"
-              messageBody = "Share the Google Sheet with<br>editor@zsheets-378406.iam.gserviceaccount.com<br>as Editor."
-            } else if(sheet_Id == "" && user_name != "") {
-              messageBody = "NO GAME COLLECTION FOR THIS USER"
+              //////////////////////////////////////////////////////
             } else {
-              messageBody = "BGG Server Response Issue. Try Again."
-            }
-            $(".cardList").html(`<div id="updateText" class="text-center mt-4 pt-4" style="position: relative; margin-top: 1% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
-              <h5 class="text-center h3 mb-3" style="position:relative;top: 1em !important; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 100; color:red">${messageBody}</h5></div>`)
-          }
-          sheet_Id = ""
-          user_name = ""
-          hideloader();
-        },
-      });
-    }
-    }
+              //console.log("ENTER HERE")
+              let messageBody = ""
+              if(sheet_Id != "" && user_name == "") {
+                //messageBody = "*SHEET ID IS INCORRECT"
+                messageBody = "Share the Google Sheet with<br>editor@zsheets-378406.iam.gserviceaccount.com<br>as Editor."
+              } else if(sheet_Id == "" && user_name != "") {
+                messageBody = "NO GAME COLLECTION FOR THIS USER"
+              } else {
+                messageBody = "BGG Server Response Issue. Try Again."
+              }
+              $(".cardList").html(`<div id="updateText" class="text-center mt-4 pt-4" style="position: relative; margin-top: 1% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
+                <h5 class="text-center h3 mb-3" style="position:relative;top: 1em !important; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 100; color:red">${messageBody}</h5></div>`)
+              
+              sheet_Id = ""
+              user_name = ""
+              hideloader();
 
+              document.getElementById('splashScreen').style.display = 'none'
+              document.getElementById('splashScreen').style.opacity = 0
+              document.getElementById('splashScreen').style.overflow = "hidden"
+            }
+          },
+        });
+      }
+    }
     //////////////////////////////////////////////////////////////////////////////////////////////////
     function checkUserFillData() {
       //console.log("Click")
@@ -2444,7 +2589,7 @@
       if(username == ''){
         $(".cardList").html(`<!--div class="bg-alto header-row-section p-3 position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 2.5em !important; border-left: 15px solid #ff0000;"></div-->
         <!--div class="position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 1em !important"></div -->
-        <div id="sheetIdForm" class="text-center mt-4 pt-4" style="position: relative; margin-top: 3% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
+        <div id="sheetIdForm" class="text-center mt-4 pt-4" style="position: relative; margin-top: 3% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center; z-index:9999999999 !important;">
           <h5 class="text-center" style="color:red; display:${(sheet_Id == "" && user_name == "") ? 'none' : 'block'}">${messageBody}</h5>
           <h4 class="text-center h3 mb-3" style="position:relative;top: 1em; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 700;">ENTER YOUR BGG USER NAME, GOOGLE SHEET ID, OR GOOGLE SHEET URL</h4>
           <div id="settingBox" class="text-center mt-4 pt-4" style="width: 60%; position:relative; height: auto; left: 20%;background-color: #FFFFFF; box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 3px #FFFFFF; margin-top: 0em !important; border-radius: 2px;">
@@ -2671,6 +2816,10 @@
                   document.getElementById('page-header').style.display = 'none'
                   document.getElementById('page-footer').style.display = 'none'
 
+                  document.getElementById('splashScreen').style.display = 'none'
+                  document.getElementById('splashScreen').style.opacity = 0
+                  document.getElementById('splashScreen').style.overflow = "hidden"
+
 
                   //////////////////////////////////////////////////////////////////
                  /*  var mResponseSC = response.boardgame.replace(/�/g, "") 
@@ -2806,7 +2955,8 @@
                   //console.log(boardgames, " after process")
                   //////////////////////////////////////////////////////
                   // Batch Update Games to google sheet
-                  batchUpdateGameList(boardgames)
+                  //batchUpdateGameList(boardgames)
+                  batchUpdateGameList(_filteredOwnGames)
                   //////////////////////////////////////////////////////
                   // render pagination
                   renderPaginationHTML();
@@ -2916,7 +3066,7 @@
 
                   $(".cardList").html(`<!--div class="bg-alto header-row-section p-3 position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 2.5em !important; border-left: 15px solid #ff0000;"></div-->
                   <!--div class="position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 1em !important"></div-->
-                  <div class="text-center mt-4 pt-4" style="position: relative; margin-top: 3% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
+                  <div class="text-center mt-4 pt-4" style="position: relative; margin-top: 3% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center; z-index:999999999 !important;">
                     <h4 class="text-center h3 mb-3" style="position:relative;top: 1em; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 100; color:red">${messageBody}</h4>
                     <!--div class="text-center">Use correct sheet id or username or sheet url to find its game collection.</div>
                     <div id="settingBox" class="text-center mt-4 pt-4" style="width: 60%; position:relative; height: auto; left: 20%; background-color: #F0B25880; box-shadow: 0 0 0 3px #F0B25880, 0 0 0 3px #F0B25820; margin-top: 1em !important;">
@@ -2983,6 +3133,10 @@
                 // Hide the top border
                 document.getElementById('page-header').style.display = 'none'
                 document.getElementById('page-footer').style.display = 'none'
+
+                document.getElementById('splashScreen').style.display = 'none'
+                document.getElementById('splashScreen').style.opacity = 0
+                document.getElementById('splashScreen').style.overflow = "hidden"
 
                 
 
@@ -3101,7 +3255,8 @@
                 //console.log(boardgames, " after process")
                 //////////////////////////////////////////////////////
                 // Batch Update Games to google sheet
-                batchUpdateGameList(boardgames)
+                //batchUpdateGameList(boardgames)
+                batchUpdateGameList(_filteredOwnGames)
 
                 
                 //////////////////////////////////////////////////////
@@ -3207,7 +3362,7 @@
 
                 $(".cardList").html(`<!--div class="bg-alto header-row-section p-3 position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 2.5em !important; border-left: 15px solid #ff0000;"></div-->
                 <!--div class="position-sticky sticky-top" style="position: relative; z-index:99999 !important; height: 1em !important"></div-->
-                <div class="text-center mt-4 pt-4" style="position: relative; margin-top: 3% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center;">
+                <div class="text-center mt-4 pt-4" style="position: relative; margin-top: 3% !important; width:100%; height:38vh; display:flex; flex-direction:column;justify-content:center; z-index:999999999 !important;">
                   <h4 class="text-center h3 mb-3" style="position:relative;top: 1em; z-index:9; font-family: 'DINRegular'; letter-spacing: -1px; font-weight: 100; color:red">${messageBody}</h4>
                   <!--div class="text-center">Use correct sheet id or username or sheet url to find its game collection.</div>
                   <div id="settingBox" class="text-center mt-4 pt-4" style="width: 60%; position:relative; height: auto; left: 20%; background-color: #F0B25880; box-shadow: 0 0 0 3px #F0B25880, 0 0 0 3px #F0B25820; margin-top: 1em !important;">
@@ -3358,8 +3513,8 @@
 
 
     function batchUpdateGameList(data) {
-      //console.log("DATA - ", data)
-      let gameMsg = ""
+      //console.log("DATA - ", data.length)
+      gameMsg = ""
       var gameObj = []
       for (var i=0; i < data.length; i++) {
         var eachGame = []
@@ -3377,6 +3532,10 @@
       }
       
       //console.log(gameObj.length, " isGameOwn ", privateDataList.length)
+      // For testing only
+      //privateDataList.splice(0)
+
+      //console.log(privateDataList.length, '<', gameObj.length, " --- ")
 
       if(privateDataList.length < gameObj.length) {
         //console.log(removeItemOnce(gameObj, privateDataList))
@@ -3389,18 +3548,23 @@
           url: 'insert_data.php', 
           type:'POST', 
           data:{'sheetId' : sheet_Id, 'sheet' : sheet_Name, 'gamesData' : dataList}, 
+          /* data:{'sheetId' : sheet_Id, 'sheet' : 'Games_test', 'gamesData' : dataList},  */
           cache: false, 
           success: function (response) {
             //console.log(response)
             //return 'Game Updated'
-            gameMsg = response
+            //console.log(gameMsg, " >>>>>")
+            //return gameMsg;
+            gameMsg = 'Games List Saved.'
           }
         })
-      } {
+        
+      } else {
         //console.log("Sheet already updated...")
-        gameMsg = "Sheet Already Updated"
+        //return gameMsg;
+        gameMsg = 'Sheet Already Updated'
       }
-      return gameMsg;
+      //console.log(strValue, " >>>>>> ")
     }
      //////////////////////////////////////////////////////////////////////////////////////////////////
     function hideloader() {
@@ -5211,7 +5375,7 @@
               <div class="text-right" data-objectid="${objectid}"><div onClick="showFind(${objectid})" class="metaGroup"><span><img src="./images/earshot-games_player.png" width="35px">${playerStats}</span><span><img src="./images/earshot-games_time.png"width="35px">${playtimeStats}</span><span><img src="./images/earshot-games_age.png"  width="35px">${data.age}+</span>
                 ${data.boardgamemechanic != undefined && data.boardgamemechanic.includes("Cooperative Game") == true
                   ?
-                  `<span><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>`
+                  `<span><img src="./images/earshot-games_coop.png?version=1.4" width="35px"></span>`
                   : ``}  
               </div></div--> 
               <!--div class="ratingWrapper"-->
@@ -5716,7 +5880,7 @@
                     <div class="text-right" data-objectid="${objectid}"><div class="metaGroup"><span><img src="./images/earshot-games_player.png" width="35px">${playerStats}</span><span><img src="./images/earshot-games_time.png"width="35px">${playtimeStats}</span><span><img src="./images/earshot-games_age.png" width="35px">${data.age}+</span>
                       ${data.boardgamemechanic != undefined && data.boardgamemechanic.includes("Cooperative Game") == true
                       ?
-                      `<span><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>`
+                      `<span><img src="./images/earshot-games_coop.png?version=1.4" width="35px"></span>`
                       : ``}
                     </div></div>  
                     <div id="${objectid}" class="ratingWrapper" onClick='toggleRating(event, ${ratingInPercentage}, ${gameRatingAverage})'>
@@ -6047,9 +6211,6 @@
           clearTimeout(toggleTimer)
           if (!$("#myModal2").is(":visible") ) {
             //console.log("modal closed")
-
-
-
             // Make the button active
             if(MODE_TYPE == "list") {
               document.getElementById("btnFindList").classList.remove("btn-outline-primary-active");
@@ -6257,7 +6418,7 @@
                     <div class="metaGroup_details_filter"><span><img src="./images/earshot-games_player.png" width="35px">${playerStats}</span><span><img src="./images/earshot-games_time.png"  width="35px">${playtimeStats}</span><span><img src="./images/earshot-games_age.png"  width="35px">${data.age}+</span>
                       ${data.boardgamemechanic != undefined && data.boardgamemechanic.includes("Cooperative Game") == true
                       ?
-                      `<span><img src="./images/earshot-games_coop.png?version=1.1.1" width="35px"></span>`
+                      `<span><img src="./images/earshot-games_coop.png?version=1.4" width="35px"></span>`
                       : ``}
                     </div>
                     <!--div class="ratingWrapper"-->
@@ -6463,5 +6624,6 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   </script>
+
 </body>
 </html>
